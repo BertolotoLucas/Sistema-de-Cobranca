@@ -1,0 +1,142 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: sistemaCobranca
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /cliente:
+    get:
+      summary: 'Sample endpoint: Returns details about a particular cliente'
+      operationId: listCliente
+      tags:
+        - cliente
+      parameters:
+        - name: id
+          in: query
+          description: ID of the cliente
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cliente'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /pagamento:
+    get:
+      summary: 'Sample endpoint: Returns details about a particular pagamento'
+      operationId: listPagamento
+      tags:
+        - pagamento
+      parameters:
+        - name: id
+          in: query
+          description: ID of the pagamento
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pagamento'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /compra:
+    get:
+      summary: 'Sample endpoint: Returns details about a particular compra'
+      operationId: listCompra
+      tags:
+        - compra
+      parameters:
+        - name: id
+          in: query
+          description: ID of the compra
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Compra'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Cliente:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        nome:
+          type: string
+        valorPendente:
+          type: number
+          format: float
+    Pagamento:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        valor:
+          type: number
+          format: float
+        data:
+          type: string
+    Compra:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        valor:
+          type: number
+          format: float
+        data:
+          type: string
+        descricao:
+          type: string
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+security:
+  - BasicAuth: []
