@@ -4,20 +4,21 @@ import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
+//@Table(name = "pagamento")
 public class Pagamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idPagamento", nullable = false)
+    //@Column(name = "idPagamento", nullable = false)
     private long id;
 
-    @Column(name = "valor", nullable = false)
+    //@Column(name = "valor", nullable = false)
     private float valor;
 
-    @Column(name = "data", nullable = false)
+    //@Column(name = "data", nullable = false)
     private String data;
 
     @ManyToOne
-    @JoinColumn(name = "cliente_idCliente", nullable = false)
+    @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
 
     private Pagamento(long id, float valor, String data, Cliente cliente) {

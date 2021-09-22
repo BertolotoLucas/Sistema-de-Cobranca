@@ -9,3 +9,6 @@ spring:
     username: root
     password: root
     type: com.zaxxer.hikari.HikariDataSource
+  thymeleaf:
+    mode: html
+    cache: false

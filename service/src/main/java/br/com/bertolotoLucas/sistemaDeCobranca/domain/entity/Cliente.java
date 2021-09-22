@@ -1,23 +1,31 @@
 package br.com.bertolotoLucas.sistemaDeCobranca.domain.entity;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "cliente")
+//@Table(name = "cliente")
 public class Cliente {
     @Id
-    @Column(name = "idCliente", nullable = false)
+    //@Column(name = "idCliente", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "nome", nullable = false)
-    private long nome;
+    //@Column(name = "nome", nullable = false)
+    private String nome;
 
-    @Column(name = "valorPendente", nullable = false)
+    //@Column(name = "valorPendente", nullable = false)
     private float valorPendente;
 
-    private Cliente(long id, long nome, float valorPendente) {
+    @OneToMany(mappedBy = "cliente")
+    private List<Compra> compras;
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Pagamento> pagamentos;
+
+    private Cliente(long id, String nome, float valorPendente) {
         this.id = id;
         this.nome = nome;
         this.valorPendente = valorPendente;
@@ -39,11 +47,11 @@ public class Cliente {
         this.id = id;
     }
 
-    public long getNome() {
+    public String getNome() {
         return nome;
     }
 
-    public void setNome(long nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
@@ -79,7 +87,7 @@ public class Cliente {
 
     public static final class Builder {
         private long id;
-        private long nome;
+        private String nome;
         private float valorPendente;
 
         private Builder() {}
@@ -89,7 +97,7 @@ public class Cliente {
             return this;
         }
 
-        public Builder nome(long nome) {
+        public Builder nome(String nome) {
             this.nome = nome;
             return this;
         }
