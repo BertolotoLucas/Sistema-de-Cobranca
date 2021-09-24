@@ -1,14 +1,14 @@
 server:
   port: 8080
-  servlet:
-    context-path: /v1
 spring:
   datasource:
-    driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/sistemaCobranca?createDatabaseIfNotExist=true&serverTimeZone=UTC&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/sistemaCobranca
     username: root
     password: root
-    type: com.zaxxer.hikari.HikariDataSource
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
   thymeleaf:
     mode: html
     cache: false

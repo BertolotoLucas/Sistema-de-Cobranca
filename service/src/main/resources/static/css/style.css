@@ -1,0 +1,38 @@
+a, u {
+  text-decoration: none;
+}
+
+.btn-adicionar{
+     margin: auto;
+}
+
+.container{
+    width: 85%;
+}
+
+.rounded-pill{
+    border-radius: 50%!important;
+}
+
+.btn-link, .form-link {
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    color: #0000EE;
+    padding: 0;
+    text-decoration: underline;
+    font-family: inherit;
+    font-size: inherit;
+    display: inline;
+}
+
+.btn-group-sm>.btn, .btn-sm{
+    padding: 0.5em 0.5em;
+    margin-top: 5px;
+}
+
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }

@@ -1,4 +1,4 @@
-package br.com.bertolotoLucas.sistemaDeCobranca.domain.repository;
+package br.com.bertolotoLucas.sistemaDeCobranca.repository;
 
 import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width"/>
-    <title>Home Page</title>
-    <!--CSS-BOOTSTRAP-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <!--CSS-ICON GOOGLE-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
-
-</head>
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width"/>
+        <title>Home Page</title>
+        <!--CSS-BOOTSTRAP-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+        <!--CSS-ICON GOOGLE-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="/css/style.css" rel="stylesheet" type="text/css">
+    </head>
     <body>
         <header>
             <nav class="navbar navbar-light bg-light">
                 <div class="container-fluid">
                     <span class="navbar-brand mb-0 h1">Sistema de Cobranças</span>
-                    <a href="#"><span class="btn btn-primary btn-sm rounded-pill editLink material-icons btn-adicionar">person_add</span></a>
+                    <a href="/newCliente" role="button">
+                        <span class="btn btn-primary btn-sm rounded-pill editLink material-icons btn-adicionar " style="padding:0.4em">person_add</span>
+                    </a>
                 </div>
             </nav>
         </header>
         <main class="container">
-            <div class="table-responsive">
+            <div id="tableClientes" class="table-responsive">
                 <table class="table table-striped table-hover table-bordered text-center align-middle caption-top">
                     <caption>Lista dos clientes</caption>
                     <thead>
@@ -33,20 +34,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">id</th>
-                            <td>nomeCliente</td>
-                            <td>95.00</td>
+                        <tr id="cliente" th:each="cliente : ${clientes}">
+                            <th id="idCliente" scope="row" th:text="${cliente.id}"></th>
+                            <td th:text="${cliente.nome}"></td>
+                            <td th:text="${cliente.saldo}"></td>
                             <td>
-                                <a href="#"><span class="btn btn-success btn-sm rounded-pill editLink material-icons ">attach_money</span></a>
-                                <a href="#"><span class="btn btn-secondary btn-sm rounded-pill editLink material-icons ">shopping_cart</span></a>
-                                <a href="#"><span class="btn btn-warning btn-sm rounded-pill editLink material-icons ">edit</span></a>
-                                <a href="#"><span class="btn btn-danger btn-sm rounded-pill editLink material-icons ">delete</span></a>
+                                <a href="#"><span class="btn btn-success btn-sm rounded-pill editLink material-icons" >attach_money</span></a>
+                                <a href="#"><span class="btn btn-secondary btn-sm rounded-pill editLink material-icons" >shopping_cart</span></a>
+                                <a href="#"><span class="btn btn-warning btn-sm rounded-pill editLink material-icons" >edit</span></a>
+                                <a id="delClienteBtn" href="#"><span class="btn btn-danger btn-sm rounded-pill editLink material-icons" >delete</span></a>
+                                <!--"/delCliente"-->
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </main>
+        <script src="/js/script.js"></script>
     </body>
 </html>

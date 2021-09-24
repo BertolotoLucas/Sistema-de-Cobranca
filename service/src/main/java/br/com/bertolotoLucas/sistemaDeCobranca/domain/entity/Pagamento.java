@@ -1,31 +1,51 @@
 package br.com.bertolotoLucas.sistemaDeCobranca.domain.entity;
 
-import java.util.Objects;
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.Date;
 
 @Entity
-//@Table(name = "pagamento")
+@Table(name = "pagamentos")
 public class Pagamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    //@Column(name = "idPagamento", nullable = false)
-    private long id;
-
-    //@Column(name = "valor", nullable = false)
-    private float valor;
-
-    //@Column(name = "data", nullable = false)
-    private String data;
-
+    private Long id;
+    @Column(nullable = false)
+    private double valor;
+    @Column(nullable = false)
+    private LocalDateTime data;
     @ManyToOne
-    @JoinColumn(name = "cliente_id", nullable = false)
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    private Pagamento(long id, float valor, String data, Cliente cliente) {
-        this.id = id;
+    @Deprecated
+    public Pagamento() {}
+
+    public Pagamento(double valor, LocalDateTime data, Cliente cliente) {
         this.valor = valor;
         this.data = data;
         this.cliente = cliente;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public double getValor() {
+        return valor;
+    }
+
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
+
+    public LocalDateTime getData() {
+        return data;
+    }
+
+    public void setData(LocalDateTime data) {
+        this.data = data;
     }
 
     public Cliente getCliente() {
@@ -36,88 +56,13 @@ public class Pagamento {
         this.cliente = cliente;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public float getValor() {
-        return valor;
-    }
-
-    public void setValor(float valor) {
-        this.valor = valor;
-    }
-
-    public String getData() {
-        return data;
-    }
-
-    public void setData(String data) {
-        this.data = data;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Pagamento pagamento = (Pagamento) o;
-        return (
-            id == pagamento.id &&
-            Float.compare(pagamento.valor, valor) == 0 &&
-            Objects.equals(data, pagamento.data) &&
-            Objects.equals(cliente, pagamento.cliente)
-        );
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, valor, data, cliente);
-    }
-
     @Override
     public String toString() {
-        return "Pagamento{" + "id=" + id + ", valor=" + valor + ", data='" + data + '\'' + ", cliente=" + cliente + '}';
-    }
-
-    public static Builder newBuilder() {
-        return new Builder();
-    }
-
-    public static final class Builder {
-        private long id;
-        private float valor;
-        private String data;
-        private Cliente cliente;
-
-        private Builder() {}
-
-        public Builder id(long id) {
-            this.id = id;
-            return this;
-        }
-
-        public Builder valor(float valor) {
-            this.valor = valor;
-            return this;
-        }
-
-        public Builder data(String data) {
-            this.data = data;
-            return this;
-        }
-
-        public Builder cliente(Cliente cliente) {
-            this.cliente = cliente;
-            return this;
-        }
-
-        public Pagamento build() {
-            Pagamento pagamento = new Pagamento(id, valor, data, cliente);
-            return pagamento;
-        }
+        return "Pagamento{" +
+                "id=" + id +
+                ", valor=" + valor +
+                ", data=" + data +
+                ", cliente=" + cliente +
+                '}';
     }
 }

@@ -1,66 +1,58 @@
 package br.com.bertolotoLucas.sistemaDeCobranca.domain.entity;
 
-import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 @Entity
-//@Table(name = "compra")
+@Table(name = "compras")
 public class Compra {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    //@Column(name = "idCompra", nullable = false)
-    private long id;
-
-    //@Column(name = "valor", nullable = false)
-    private float valor;
-
-    //@Column(name = "data", nullable = false)
-    private String data;
-
-    //@Column(name = "descricao", nullable = false)
+    private Long id;
+    @Column(nullable = false)
+    private double valor;
+    @Column(nullable = false)
+    //@Temporal(TemporalType.TIMESTAMP)
+    //@JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
+    private LocalDateTime data;
+    //Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant())
+    @Column(nullable = false)
     private String descricao;
-
     @ManyToOne
-    @JoinColumn(name = "cliente_id", nullable = false)
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    private Compra(long id, float valor, String data, String descricao, Cliente cliente) {
-        this.id = id;
+    @Deprecated
+    public Compra() {}
+
+    public Compra(double valor, LocalDateTime data, String descricao, Cliente cliente) {
         this.valor = valor;
         this.data = data;
         this.descricao = descricao;
         this.cliente = cliente;
     }
 
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public float getValor() {
+    public double getValor() {
         return valor;
     }
 
-    public void setValor(float valor) {
+    public void setValor(double valor) {
         this.valor = valor;
     }
 
-    public String getData() {
+    public LocalDateTime getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(LocalDateTime data) {
         this.data = data;
     }
 
@@ -72,85 +64,22 @@ public class Compra {
         this.descricao = descricao;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Compra compra = (Compra) o;
-        return (
-            id == compra.id &&
-            Float.compare(compra.valor, valor) == 0 &&
-            Objects.equals(data, compra.data) &&
-            Objects.equals(descricao, compra.descricao) &&
-            Objects.equals(cliente, compra.cliente)
-        );
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, valor, data, descricao, cliente);
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     @Override
     public String toString() {
-        return (
-            "Compra{" +
-            "id=" +
-            id +
-            ", valor=" +
-            valor +
-            ", data='" +
-            data +
-            '\'' +
-            ", descricao='" +
-            descricao +
-            '\'' +
-            ", cliente=" +
-            cliente +
-            '}'
-        );
-    }
-
-    public static Builder newBuilder() {
-        return new Builder();
-    }
-
-    public static final class Builder {
-        private long id;
-        private float valor;
-        private String data;
-        private String descricao;
-        private Cliente cliente;
-
-        private Builder() {}
-
-        public Builder id(long id) {
-            this.id = id;
-            return this;
-        }
-
-        public Builder valor(float valor) {
-            this.valor = valor;
-            return this;
-        }
-
-        public Builder data(String data) {
-            this.data = data;
-            return this;
-        }
-
-        public Builder descricao(String descricao) {
-            this.descricao = descricao;
-            return this;
-        }
-
-        public Builder cliente(Cliente cliente) {
-            this.cliente = cliente;
-            return this;
-        }
-
-        public Compra build() {
-            return new Compra(id, valor, data, descricao, cliente);
-        }
+        return "Compra{" +
+                "id=" + id +
+                ", valor=" + valor +
+                ", data=" + data +
+                ", descricao='" + descricao + '\'' +
+                ", cliente=" + cliente +
+                '}';
     }
 }

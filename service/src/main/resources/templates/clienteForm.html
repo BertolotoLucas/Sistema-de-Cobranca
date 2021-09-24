@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Formulario para adicionar um novo cliente</title>
+        <!--CSS-BOOTSTRAP-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+        <!--CSS-ICON GOOGLE-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="/css/style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-light bg-light">
+                <div class="container-fluid">
+                    <span class="navbar-brand mb-0 h1">Sistema de Cobranças</span>
+                </div>
+            </nav>
+        </header>
+        <main class="container" style="width: 65%;">
+            <div>
+                <form method="post">
+                    <div class="form-group">
+                        <p style="margin: 5px 0;">*Nome:</p>
+                        <input type="text" class="form-control" name="nome" placeholder="José Octavio Batista" required>
+                    </div>
+                    <div class="form-group">
+                        <p style="margin: 5px 0;">*Saldo</p>
+                        <input type="number" class="form-control" step="0.01" name="saldo" placeholder="45,00" required>
+                    </div>
+
+
+                    <div style="display:flex; margin-top: 7px">
+                        <small  class="form-text text-muted">(*) Campos obrigatórios</small>
+                        <div style='margin-left: auto;'>
+                            <button style="padding: 0; margin: 0; border-width:0; background-color: #FFFFFF;" type="submit">
+                                <span class="btn btn-success btn-sm rounded-pill editLink material-icons" style="padding:0.4em">check</span>
+                            </button>
+                            <a href="/index" role="button">
+                                <span class="btn btn-danger btn-sm rounded-pill editLink material-icons " style="padding:0.4em">close</span>
+                            </a>
+                            <!--<button type="submit" class="btn" style="margin-top: 10px;">Cancelar</button>-->
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </body>
+</html>
