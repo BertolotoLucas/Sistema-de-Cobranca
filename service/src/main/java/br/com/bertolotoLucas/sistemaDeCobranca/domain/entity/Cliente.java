@@ -1,8 +1,8 @@
 package br.com.bertolotoLucas.sistemaDeCobranca.domain.entity;
 
-import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "clientes")
@@ -10,12 +10,16 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(nullable = false)
     private String nome;
+
     @Column(nullable = false)
     private double saldo;
+
     @OneToMany(mappedBy = "cliente")
     private List<Compra> compras;
+
     @OneToMany(mappedBy = "cliente")
     private List<Pagamento> pagamentos;
 
@@ -25,17 +29,14 @@ public class Cliente {
         atualizaPagamentosOnRemove();
     }
 
-
     private void atualizaComprasOnRemove() {
-        if(!Objects.isNull(this.getCompras()))
-        for(Compra c : this.getCompras()) {
+        if (!Objects.isNull(this.getCompras())) for (Compra c : this.getCompras()) {
             c.setCliente(null);
         }
     }
 
     private void atualizaPagamentosOnRemove() {
-        if(!Objects.isNull(this.getPagamentos()))
-        for(Pagamento p : this.getPagamentos()) {
+        if (!Objects.isNull(this.getPagamentos())) for (Pagamento p : this.getPagamentos()) {
             p.setCliente(null);
         }
     }
@@ -86,10 +87,6 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", saldo=" + saldo +
-                '}';
+        return "Cliente{" + "id=" + id + ", nome='" + nome + '\'' + ", saldo=" + saldo + '}';
     }
 }

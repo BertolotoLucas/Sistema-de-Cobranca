@@ -14,7 +14,7 @@
         <header>
             <nav class="navbar navbar-light bg-light">
                 <div class="container-fluid">
-                    <span class="navbar-brand mb-0 h1">Sistema de Cobranças</span>
+                    <a href="/" role="button"><span class="navbar-brand mb-0 h1">Sistema de Cobranças</span></a>
                     <a href="/newCliente" role="button">
                         <span class="btn btn-primary btn-sm rounded-pill editLink material-icons btn-adicionar " style="padding:0.4em">person_add</span>
                     </a>
@@ -22,34 +22,35 @@
             </nav>
         </header>
         <main class="container">
-            <div id="tableClientes" class="table-responsive">
+            <!--TABELA-->
+            <div class="table-responsive">
                 <table class="table table-striped table-hover table-bordered text-center align-middle caption-top">
                     <caption>Lista dos clientes</caption>
                     <thead>
                         <tr>
                           <th scope="col">#</th>
                            <th scope="col">Nome</th>
-                           <th scope="col">Devendo</th>
+                           <th scope="col">Saldo</th>
                            <th scope="col"  class="th-lg">Ação</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr id="cliente" th:each="cliente : ${clientes}">
-                            <th id="idCliente" scope="row" th:text="${cliente.id}"></th>
+                        <tr th:each="cliente : ${clientes}">
+                            <th scope="row" th:text="${cliente.id}"></th>
                             <td th:text="${cliente.nome}"></td>
                             <td th:text="${cliente.saldo}"></td>
                             <td>
                                 <a href="#"><span class="btn btn-success btn-sm rounded-pill editLink material-icons" >attach_money</span></a>
                                 <a href="#"><span class="btn btn-secondary btn-sm rounded-pill editLink material-icons" >shopping_cart</span></a>
-                                <a href="#"><span class="btn btn-warning btn-sm rounded-pill editLink material-icons" >edit</span></a>
-                                <a id="delClienteBtn" href="#"><span class="btn btn-danger btn-sm rounded-pill editLink material-icons" >delete</span></a>
-                                <!--"/delCliente"-->
+                                <a th:href="@{/updateCliente/{idCliente}(idCliente=${cliente.id})}"><span class="btn btn-warning btn-sm rounded-pill editLink material-icons" >edit</span></a>
+                                <a th:href="@{/deleteCliente/{idCliente}(idCliente=${cliente.id})}"><span class="btn btn-danger btn-sm rounded-pill editLink material-icons" >delete</span></a>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </main>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
         <script src="/js/script.js"></script>
     </body>
 </html>

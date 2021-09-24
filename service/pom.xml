@@ -63,6 +63,26 @@
                     <mainClass>br.com.bertolotoLucas.sistemaDeCobranca.SistemaDeCobrancaApplication</mainClass>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>com.hubspot.maven.plugins</groupId>
+                <artifactId>prettier-maven-plugin</artifactId>
+                <version>${prettier-maven-plugin.version}</version>
+                <configuration>
+                    <printWidth>120</printWidth>
+                    <tabWidth>4</tabWidth>
+                    <prettierJavaVersion>0.7.1</prettierJavaVersion>
+                    <generateDiff>true</generateDiff>
+                    <fail>true</fail>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>

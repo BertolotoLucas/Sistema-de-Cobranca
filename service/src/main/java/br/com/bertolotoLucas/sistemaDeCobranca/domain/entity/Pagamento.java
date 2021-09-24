@@ -1,9 +1,7 @@
 package br.com.bertolotoLucas.sistemaDeCobranca.domain.entity;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.Date;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "pagamentos")
@@ -11,10 +9,13 @@ public class Pagamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(nullable = false)
     private double valor;
+
     @Column(nullable = false)
     private LocalDateTime data;
+
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
@@ -58,11 +59,6 @@ public class Pagamento {
 
     @Override
     public String toString() {
-        return "Pagamento{" +
-                "id=" + id +
-                ", valor=" + valor +
-                ", data=" + data +
-                ", cliente=" + cliente +
-                '}';
+        return "Pagamento{" + "id=" + id + ", valor=" + valor + ", data=" + data + ", cliente=" + cliente + '}';
     }
 }

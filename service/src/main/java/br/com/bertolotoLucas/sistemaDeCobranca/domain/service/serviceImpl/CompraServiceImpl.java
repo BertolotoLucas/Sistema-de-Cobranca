@@ -3,11 +3,10 @@ package br.com.bertolotoLucas.sistemaDeCobranca.domain.service.serviceImpl;
 import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Compra;
 import br.com.bertolotoLucas.sistemaDeCobranca.domain.service.CompraService;
 import br.com.bertolotoLucas.sistemaDeCobranca.repository.CompraRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class CompraServiceImpl implements CompraService {
@@ -22,8 +21,7 @@ public class CompraServiceImpl implements CompraService {
     @Override
     public Compra findById(Long id) {
         Optional<Compra> compraOptional = compraRepository.findById(id);
-        if(compraOptional.isPresent())
-            return compraOptional.get();
+        if (compraOptional.isPresent()) return compraOptional.get();
         return null;
     }
 

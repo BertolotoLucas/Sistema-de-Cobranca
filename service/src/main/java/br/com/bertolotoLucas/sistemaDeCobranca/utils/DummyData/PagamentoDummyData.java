@@ -4,18 +4,17 @@ import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Cliente;
 import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Pagamento;
 import br.com.bertolotoLucas.sistemaDeCobranca.repository.ClienteRepository;
 import br.com.bertolotoLucas.sistemaDeCobranca.repository.PagamentoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 @Component
 public class PagamentoDummyData {
     @Autowired
     ClienteRepository clienteRepository;
+
     @Autowired
     PagamentoRepository pagamentoRepository;
 

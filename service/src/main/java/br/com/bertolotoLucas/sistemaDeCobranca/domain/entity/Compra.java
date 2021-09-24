@@ -1,11 +1,7 @@
 package br.com.bertolotoLucas.sistemaDeCobranca.domain.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "compras")
@@ -13,15 +9,16 @@ public class Compra {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(nullable = false)
     private double valor;
+
     @Column(nullable = false)
-    //@Temporal(TemporalType.TIMESTAMP)
-    //@JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
     private LocalDateTime data;
-    //Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant())
+
     @Column(nullable = false)
     private String descricao;
+
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
@@ -74,12 +71,20 @@ public class Compra {
 
     @Override
     public String toString() {
-        return "Compra{" +
-                "id=" + id +
-                ", valor=" + valor +
-                ", data=" + data +
-                ", descricao='" + descricao + '\'' +
-                ", cliente=" + cliente +
-                '}';
+        return (
+            "Compra{" +
+            "id=" +
+            id +
+            ", valor=" +
+            valor +
+            ", data=" +
+            data +
+            ", descricao='" +
+            descricao +
+            '\'' +
+            ", cliente=" +
+            cliente +
+            '}'
+        );
     }
 }
