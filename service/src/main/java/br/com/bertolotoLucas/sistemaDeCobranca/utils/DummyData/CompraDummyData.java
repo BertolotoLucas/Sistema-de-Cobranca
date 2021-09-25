@@ -7,6 +7,7 @@ import br.com.bertolotoLucas.sistemaDeCobranca.repository.CompraRepository;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -27,7 +28,9 @@ public class CompraDummyData {
             int i = 0;
             for (Cliente c : clientes) {
                 i++;
-                compras.add(new Compra(-200 + (i * 3), LocalDateTime.now(), "Camisa #" + i, c));
+                for (int j = 0; j < 100; j++) {
+                    compras.add(new Compra(200 + (i + j * 3) / 5, LocalDateTime.now(), "Camisa #" + i, c));
+                }
             }
             compraRepository.saveAll(compras);
         }

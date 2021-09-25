@@ -23,4 +23,26 @@ public class UpdateClienteController {
         clienteService.save(c);
         return "redirect:/";
     }
+//
+//    @GetMapping(value = "/updateClientePagamento/{id}")
+//    public String updateClientePagamento(@PathVariable Long id) {
+//        Cliente c = clienteService.findById(id);
+//        if (Objects.isNull(c)) {
+//            return "redirect:/";
+//        }
+//        c.setSaldo(c.getSaldo() + 10);
+//        clienteService.save(c);
+//        return "redirect:/";
+//    }
+//
+//    @GetMapping(value = "/updateClienteCompra/{id}")
+//    public String updateClienteCompra(@PathVariable Long id) {
+//        Cliente c = clienteService.findById(id);
+//        if (Objects.isNull(c)) {
+//            return "redirect:/";
+//        }
+//        c.setSaldo(c.getSaldo() - 10);
+//        clienteService.save(c);
+//        return "redirect:/";
+//    }
 }

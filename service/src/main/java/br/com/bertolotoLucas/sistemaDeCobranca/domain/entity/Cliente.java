@@ -62,11 +62,16 @@ public class Cliente {
     }
 
     public double getSaldo() {
+        if (this.saldo == 0) {
+            double result = 0;
+            if (!Objects.isNull(this.compras)) for (Compra c : this.compras) {
+                result = result - c.getValor();
+            }
+            if (!Objects.isNull(this.pagamentos)) for (Pagamento p : this.pagamentos) {
+                result = result + p.getValor();
+            }
+        }
         return saldo;
-    }
-
-    public void setSaldo(double saldo) {
-        this.saldo = saldo;
     }
 
     public List<Compra> getCompras() {

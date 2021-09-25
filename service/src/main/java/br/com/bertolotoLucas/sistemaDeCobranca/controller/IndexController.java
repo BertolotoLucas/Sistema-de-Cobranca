@@ -20,9 +20,8 @@ public class IndexController {
             ModelAndView mv = new ModelAndView("vazio");
             return mv;
         }
-        clientes.sort((c1, c2) -> c1.getNome().compareTo(c2.getNome()));
+        //clientes.sort((c1, c2) -> c1.getNome().compareTo(c2.getNome()));
         ModelAndView mv = new ModelAndView("index");
-        mv.addObject("clientes", clientes);
         mv.addObject("clientes", clientes);
         return mv;
     }
