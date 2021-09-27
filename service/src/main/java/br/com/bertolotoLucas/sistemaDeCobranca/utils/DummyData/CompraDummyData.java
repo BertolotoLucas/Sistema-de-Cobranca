@@ -28,8 +28,11 @@ public class CompraDummyData {
             int i = 0;
             for (Cliente c : clientes) {
                 i++;
-                for (int j = 0; j < 100; j++) {
-                    compras.add(new Compra(200 + (i + j * 3) / 5, LocalDateTime.now(), "Camisa #" + i, c));
+                for (int j = 0; j < 10; j++) {
+                    Compra caux = new Compra(200.00 + (double) (i + j * 3) / 5, LocalDateTime.now(), "Camisa #" + i, c);
+                    compras.add(caux);
+                    c.setSaldo(c.getSaldo() - caux.getValor());
+                    clienteRepository.save(c);
                 }
             }
             compraRepository.saveAll(compras);

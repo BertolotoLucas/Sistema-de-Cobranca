@@ -28,8 +28,11 @@ public class PagamentoDummyData {
             int i = 0;
             for (Cliente c : clientes) {
                 i++;
-                for (int j = 0; j < 100; j++) {
-                    pagamentos.add(new Pagamento(100 + (i * 3) / 5, LocalDateTime.now(), c));
+                for (int j = 0; j < 8; j++) {
+                    Pagamento p = new Pagamento(100.00 + (double) (i * 3) / 5, LocalDateTime.now(), c);
+                    pagamentos.add(p);
+                    c.setSaldo(c.getSaldo() + p.getValor());
+                    clienteRepository.save(c);
                 }
             }
             pagamentoRepository.saveAll(pagamentos);

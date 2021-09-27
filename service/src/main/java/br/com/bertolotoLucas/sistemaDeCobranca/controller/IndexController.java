@@ -2,6 +2,7 @@ package br.com.bertolotoLucas.sistemaDeCobranca.controller;
 
 import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Cliente;
 import br.com.bertolotoLucas.sistemaDeCobranca.domain.service.ClienteService;
+import java.util.Comparator;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,7 @@ public class IndexController {
             ModelAndView mv = new ModelAndView("vazio");
             return mv;
         }
-        //clientes.sort((c1, c2) -> c1.getNome().compareTo(c2.getNome()));
+        clientes.sort(Comparator.comparing(Cliente::getSaldo));
         ModelAndView mv = new ModelAndView("index");
         mv.addObject("clientes", clientes);
         return mv;

@@ -8,4 +8,6 @@ public interface ClienteService {
     Cliente findById(Long id);
     Cliente save(Cliente c);
     Cliente delete(Cliente c);
+    Cliente aualizaSaldo(Cliente c);
+    List<Cliente> aualizaAllSaldo();
 }

@@ -27,31 +27,20 @@
                         <tr>
                           <th scope="col">#</th>
                            <th scope="col">Valor</th>
-                           <th scope="col">Data</th>
+                           <th scope="col">Data e hora</th>
                            <th scope="col"  class="th-lg">Ação</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="compra : ${compras}" >
-                            <th scope="row" th:text="${compra.id}"></th>
-                            <td th:text="|-${compra.valor}|"></td>
-                            <td th:text="${#temporals.format(compra.data, 'dd/MM/yyyy HH:mm:ss')}"></td>
+                        <tr th:each="extrato : ${extratos}" >
+                            <th scope="row" th:text="${extrato.tipo}"></th>
+                            <td th:text="${extrato.valor}"></td>
+                            <td th:text="${#temporals.format(extrato.data, 'dd/MM/yyyy HH:mm:ss')}"></td>
                             <td>
 <!--                                <a th:href="@{/updateClientePagamento/{idCliente}(idCliente=${cliente.id})}"><span class="btn btn-success btn-sm rounded-pill editLink material-icons" >attach_money</span></a>-->
 <!--                                <a th:href="@{/updateClienteCompra/{idCliente}(idCliente=${cliente.id})}"><span class="btn btn-secondary btn-sm rounded-pill editLink material-icons" >shopping_cart</span></a>-->
 <!--                                <a th:href="@{/updateCliente/{idCliente}(idCliente=${cliente.id})}"><span class="btn btn-warning btn-sm rounded-pill editLink material-icons" >edit</span></a>-->
 <!--                                <a th:href="@{/deleteCliente/{idCliente}(idCliente=${cliente.id})}"><span class="btn btn-danger btn-sm rounded-pill editLink material-icons" >delete</span></a>-->
-                            </td>
-                        </tr>
-                        <tr th:each="pagamento : ${pagamentos}" >
-                            <th scope="row" th:text="${pagamento.id}"></th>
-                            <td th:text="|+${pagamento.valor}|"></td>
-                            <td th:text="${#temporals.format(pagamento.data, 'dd/MM/yyyy HH:mm:ss')}"></td>
-                            <td>
-                                <!--                                <a th:href="@{/updateClientePagamento/{idCliente}(idCliente=${cliente.id})}"><span class="btn btn-success btn-sm rounded-pill editLink material-icons" >attach_money</span></a>-->
-                                <!--                                <a th:href="@{/updateClienteCompra/{idCliente}(idCliente=${cliente.id})}"><span class="btn btn-secondary btn-sm rounded-pill editLink material-icons" >shopping_cart</span></a>-->
-                                <!--                                <a th:href="@{/updateCliente/{idCliente}(idCliente=${cliente.id})}"><span class="btn btn-warning btn-sm rounded-pill editLink material-icons" >edit</span></a>-->
-                                <!--                                <a th:href="@{/deleteCliente/{idCliente}(idCliente=${cliente.id})}"><span class="btn btn-danger btn-sm rounded-pill editLink material-icons" >delete</span></a>-->
                             </td>
                         </tr>
                     </tbody>

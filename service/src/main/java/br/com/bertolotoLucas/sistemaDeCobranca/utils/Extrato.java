@@ -1,43 +1,39 @@
 package br.com.bertolotoLucas.sistemaDeCobranca.utils;
 
-import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Compra;
-import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Pagamento;
-
-import java.util.List;
+import java.time.LocalDateTime;
 
 public class Extrato {
-    private Compra compra;
-    private Pagamento pagamento;
+    private String tipo;
+    private double valor;
+    private LocalDateTime data;
 
-
-    public Extrato(Compra compra, Pagamento pagamento) {
-        this.compra = compra;
-        this.pagamento = pagamento;
+    public Extrato(String tipo, double valor, LocalDateTime data) {
+        this.tipo = tipo;
+        this.valor = valor;
+        this.data = data;
     }
 
-    public Extrato() {}
-
-    public Compra getCompra() {
-        return compra;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setCompra(Compra compra) {
-        this.compra = compra;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
-    public Pagamento getPagamento() {
-        return pagamento;
+    public double getValor() {
+        return valor;
     }
 
-    public void setPagamento(Pagamento pagamento) {
-        this.pagamento = pagamento;
+    public void setValor(double valor) {
+        this.valor = valor;
     }
 
-    @Override
-    public String toString() {
-        return "Extrato{" +
-                "compras=" + compra +
-                ", pagamentos=" + pagamento +
-                '}';
+    public LocalDateTime getData() {
+        return data;
+    }
+
+    public void setData(LocalDateTime data) {
+        this.data = data;
     }
 }

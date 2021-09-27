@@ -4,12 +4,8 @@ import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Cliente;
 import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Compra;
 import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Pagamento;
 import br.com.bertolotoLucas.sistemaDeCobranca.domain.service.ClienteService;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
 import br.com.bertolotoLucas.sistemaDeCobranca.utils.Extrato;
+import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,40 +37,31 @@ public class ExtratoController {
             compras.sort((c1, c2) -> c1.getData().compareTo(c2.getData()));
             List<Pagamento> pagamentos = c.getPagamentos();
             pagamentos.sort((p1, p2) -> p1.getData().compareTo(p2.getData()));
-            for (int i = 0; (i < compras.size()) && (i < pagamentos.size()); i++) {
-                Extrato e = new Extrato();
-                if (!Objects.isNull(compras.get(i))) e.setCompra(compras.get(i));
-                if (!Objects.isNull(pagamentos.get(i))) e.setPagamento(pagamentos.get(i));
-                extratos.add(e);
+            for (Compra caux : compras) {
+                extratos.add(new Extrato("compra", -caux.getValor(), caux.getData()));
             }
-            extratos.sort((e1, e2) -> {
-                if (!Objects.isNull(e1.getCompra()) && !Objects.isNull(e2.getPagamento())) {
-                    return e1.getCompra().getData().compareTo(e2.getPagamento().getData());
-                } else {
-                    if (Objects.isNull(e1.getCompra())) {
-                        if (!Objects.isNull(e2.getPagamento())) {
-                            return e1.getPagamento().getData().compareTo(e2.getPagamento().getData());
-                        } else {
-                            return e1.getPagamento().getData().compareTo(e2.getCompra().getData());
-                        }
-                    }
-                    if (Objects.isNull(e2.getPagamento())) {
-                        return e1.getCompra().getData().compareTo(e2.getCompra().getData());
-                    }
-                }
-                return 0;
-            });
-            mv.addObject("extratos", extratos);
+            for (Pagamento paux : pagamentos) {
+                extratos.add(new Extrato("pagamento", paux.getValor(), paux.getData()));
+            }
+            extratos.sort((e1, e2) -> e1.getData().compareTo(e2.getData()));
         } else {
             if (!Objects.isNull(c.getCompras())) {
                 List<Compra> compras = c.getCompras();
-                mv.addObject("compras", compras);
+                compras.sort((c1, c2) -> c1.getData().compareTo(c2.getData()));
+                for (Compra caux : compras) {
+                    extratos.add(new Extrato("compra", -caux.getValor(), caux.getData()));
+                }
             }
             if (!Objects.isNull(c.getPagamentos())) {
                 List<Pagamento> pagamentos = c.getPagamentos();
-                mv.addObject("pagamentos", pagamentos);
+                pagamentos.sort((p1, p2) -> p1.getData().compareTo(p2.getData()));
+                for (Pagamento paux : pagamentos) {
+                    extratos.add(new Extrato("pagamento", paux.getValor(), paux.getData()));
+                }
             }
         }
+        Collections.reverse(extratos);
+        mv.addObject("extratos", extratos);
         return mv;
     }
 }
