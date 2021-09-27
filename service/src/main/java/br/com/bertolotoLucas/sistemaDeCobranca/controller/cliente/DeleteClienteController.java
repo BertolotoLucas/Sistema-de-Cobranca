@@ -1,4 +1,4 @@
-package br.com.bertolotoLucas.sistemaDeCobranca.controller;
+package br.com.bertolotoLucas.sistemaDeCobranca.controller.cliente;
 
 import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Cliente;
 import br.com.bertolotoLucas.sistemaDeCobranca.domain.service.ClienteService;
