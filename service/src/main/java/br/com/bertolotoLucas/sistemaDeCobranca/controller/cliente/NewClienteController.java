@@ -24,7 +24,7 @@ public class NewClienteController {
     @RequestMapping(value = "/newCliente", method = RequestMethod.POST)
     public String saveCliente(@Valid Cliente cliente, BindingResult result, RedirectAttributes attributes) {
         if (result.hasErrors() || cliente.getNome().isEmpty()) {
-            return "redirect:/newCliente";
+            return "redirect:/clienteForm";
         }
         clienteService.save(cliente);
         return "redirect:/";

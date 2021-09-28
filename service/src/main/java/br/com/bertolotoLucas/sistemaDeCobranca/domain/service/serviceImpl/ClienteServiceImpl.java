@@ -50,7 +50,6 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public Cliente save(Cliente c) {
-        if (Objects.isNull(c.getId())) return null;
         return clienteRepository.save(c);
     }
 
