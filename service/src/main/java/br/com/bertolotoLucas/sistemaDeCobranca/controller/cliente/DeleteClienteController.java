@@ -16,7 +16,7 @@ public class DeleteClienteController {
     @Autowired
     ClienteService clienteService;
 
-    @DeleteMapping(value = "/deleteCliente/{id}")
+    @GetMapping(value = "/deleteCliente/{id}")
     public String deletarCliente(@PathVariable Long id) {
         Cliente c = clienteService.findById(id);
         if (Objects.isNull(c)) {
@@ -25,13 +25,4 @@ public class DeleteClienteController {
         clienteService.delete(c);
         return "redirect:/";
     }
-    //    @GetMapping(value = "/deleteCliente/{id}")
-    //    public String deletarCliente(@PathVariable Long id) {
-    //        Cliente c = clienteService.findById(id);
-    //        if (Objects.isNull(c)) {
-    //            return "redirect:/";
-    //        }
-    //        clienteService.delete(c);
-    //        return "redirect:/";
-    //    }
 }

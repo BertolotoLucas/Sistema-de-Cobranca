@@ -7,9 +7,10 @@ function deleteCliente(idCliente) {
       })
 }
 
-function deleteCliente(idCliente) {
-      fetch("/deleteCliente/"+idCliente, {
-         method:"DELETE",
+function updateCliente(cliente) {
+      fetch("/updateCliente/", {
+         method:"PUT",
+         body: cliente,
       })
 }
 

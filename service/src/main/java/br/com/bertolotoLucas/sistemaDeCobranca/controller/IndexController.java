@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,7 @@ public class IndexController {
 
     @GetMapping(value = "/")
     public ModelAndView getClientes() {
+        PageRequest paginacao = PageRequest.of(0, 15);
         List<Cliente> clientes = clienteService.findAll();
         if (clientes.isEmpty()) {
             ModelAndView mv = new ModelAndView("vazio");

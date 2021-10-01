@@ -13,6 +13,8 @@ import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -32,10 +34,20 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
+    public List<Cliente> findAll(Pageable paginacao) {
+        return (List<Cliente>) clienteRepository.findAll(paginacao);
+    }
+
+    @Override
     public Cliente findById(Long id) {
         Optional<Cliente> clienteOptional = clienteRepository.findById(id);
-        if (clienteOptional.isPresent()) return clienteOptional.get();
-        return null;
+        Cliente c = null;
+        if (clienteOptional.isPresent()) {
+            c = clienteOptional.get();
+        } else {
+            throw new RuntimeException(" Cliente não encontrado id :: " + id);
+        }
+        return c;
     }
 
     @Override
@@ -49,8 +61,8 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public Cliente save(Cliente c) {
-        return clienteRepository.save(c);
+    public void save(Cliente c) {
+        clienteRepository.save(c);
     }
 
     @Override
@@ -78,6 +90,7 @@ public class ClienteServiceImpl implements ClienteService {
             }
             cliente.setSaldo(result);
         }
-        return save(cliente);
+        clienteRepository.save(cliente);
+        return cliente;
     }
 }

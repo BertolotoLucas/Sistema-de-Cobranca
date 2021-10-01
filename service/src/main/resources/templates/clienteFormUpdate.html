@@ -19,16 +19,14 @@
         </header>
         <main class="container" style="width: 65%;">
             <div>
-                <form method="post">
+                <form th:action="@{/saveCliente/}" th:object="${cliente}" method="POST" >
+                    <input th:field="*{id}" type="hidden"/>
                     <div class="form-group">
-                        <p style="margin: 5px 0;">Id:</p>
-                        <input th:value="${cliente.id}" type="text" class="form-control" name="id" required disabled>
                         <p style="margin: 5px 0;">Nome:</p>
-                        <input th:value="${cliente.nome}" type="text" class="form-control" name="nome" placeholder="José Octavio Batista" required>
+                        <input th:field="*{nome}" type="text" class="form-control" placeholder="José Octavio Batista" required>
                     </div>
                     <div class="form-group">
-                        <p style="margin: 5px 0;">Saldo</p>
-                        <input th:value="${cliente.saldo}" type="number" class="form-control" step="0.00"  name="saldo" placeholder="00,00" required disabled>
+                        <input th:field="*{saldo}" type="hidden" class="form-control">
                     </div>
                     <div style="display:flex; margin-top: 7px">
                         <div style='margin-left: auto;'>
