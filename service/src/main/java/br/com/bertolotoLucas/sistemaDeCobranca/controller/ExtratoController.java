@@ -3,7 +3,7 @@ package br.com.bertolotoLucas.sistemaDeCobranca.controller;
 import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Cliente;
 import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Compra;
 import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Pagamento;
-import br.com.bertolotoLucas.sistemaDeCobranca.domain.service.ClienteService;
+import br.com.bertolotoLucas.sistemaDeCobranca.service.ClienteService;
 import br.com.bertolotoLucas.sistemaDeCobranca.utils.Extrato;
 import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;

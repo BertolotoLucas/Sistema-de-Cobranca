@@ -1,4 +1,4 @@
-package br.com.bertolotoLucas.sistemaDeCobranca.domain.service;
+package br.com.bertolotoLucas.sistemaDeCobranca.service;
 
 import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Compra;
 import java.util.List;

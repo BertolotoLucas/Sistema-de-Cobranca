@@ -1,19 +1,17 @@
-package br.com.bertolotoLucas.sistemaDeCobranca.domain.service.serviceImpl;
+package br.com.bertolotoLucas.sistemaDeCobranca.service.serviceImpl;
 
 import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Cliente;
 import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Compra;
 import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Pagamento;
-import br.com.bertolotoLucas.sistemaDeCobranca.domain.service.ClienteService;
 import br.com.bertolotoLucas.sistemaDeCobranca.repository.ClienteRepository;
 import br.com.bertolotoLucas.sistemaDeCobranca.repository.CompraRepository;
 import br.com.bertolotoLucas.sistemaDeCobranca.repository.PagamentoRepository;
+import br.com.bertolotoLucas.sistemaDeCobranca.service.ClienteService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 

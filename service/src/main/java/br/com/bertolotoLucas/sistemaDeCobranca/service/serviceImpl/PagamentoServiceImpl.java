@@ -1,8 +1,8 @@
-package br.com.bertolotoLucas.sistemaDeCobranca.domain.service.serviceImpl;
+package br.com.bertolotoLucas.sistemaDeCobranca.service.serviceImpl;
 
 import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Pagamento;
-import br.com.bertolotoLucas.sistemaDeCobranca.domain.service.PagamentoService;
 import br.com.bertolotoLucas.sistemaDeCobranca.repository.PagamentoRepository;
+import br.com.bertolotoLucas.sistemaDeCobranca.service.PagamentoService;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
