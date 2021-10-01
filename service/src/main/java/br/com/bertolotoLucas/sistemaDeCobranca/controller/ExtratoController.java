@@ -19,6 +19,7 @@ public class ExtratoController {
 
     @GetMapping(value = "/listExtrato/{id}")
     public ModelAndView listExtrato(@PathVariable Long id) {
+        //Preciso implementar uma pagina vazia caso o cliente nao tenha compras ou pagamentos
         Cliente c = clienteService.findById(id);
         if (Objects.isNull(c)) {
             ModelAndView mv = new ModelAndView("/");

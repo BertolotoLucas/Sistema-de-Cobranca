@@ -33,6 +33,13 @@ public class Compra {
         this.cliente = cliente;
     }
 
+    public Compra(double valor, String descricao, Cliente cliente) {
+        this.valor = valor;
+        this.data = LocalDateTime.now();
+        this.descricao = descricao;
+        this.cliente = cliente;
+    }
+
     public Long getId() {
         return id;
     }
