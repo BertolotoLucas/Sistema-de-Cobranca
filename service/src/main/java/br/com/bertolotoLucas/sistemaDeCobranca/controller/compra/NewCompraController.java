@@ -44,8 +44,18 @@ public class NewCompraController {
         if (Objects.isNull(compra)) {
             return "redirect:/";
         }
-        if (Objects.isNull(compra.getId())) compra.setData(LocalDateTime.now());
+        if (Objects.isNull(compra.getId())) {
+            compra.setData(LocalDateTime.now());
+        } else {
+            //data is incoming without the seconds! resolving this..
+            compra.setData(compraService.findById(compra.getId()).getData());
+        }
+        System.out.println("Modifiquei a data para salvar: " + compra);
         compraService.save(compra);
+        Cliente clienteUp = compra.getCliente();
+        //preciso implementar uma solução para modificar o cliente quando modificar a compra!
+        //clienteUp.setSaldo(clienteUp.getSaldo()- compra.getValor());
+        //clienteService.save(clienteUp);
         return "redirect:/listExtrato/" + compra.getCliente().getId().toString();
     }
 }

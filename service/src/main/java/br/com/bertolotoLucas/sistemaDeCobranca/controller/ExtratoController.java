@@ -39,10 +39,14 @@ public class ExtratoController {
             List<Pagamento> pagamentos = c.getPagamentos();
             pagamentos.sort((p1, p2) -> p1.getData().compareTo(p2.getData()));
             for (Compra caux : compras) {
-                extratos.add(new Extrato("compra", -caux.getValor(), caux.getData()));
+                Extrato extrato = new Extrato("compra", -caux.getValor(), caux.getData());
+                extrato.setIdCompra(caux.getId());
+                extratos.add(extrato);
             }
             for (Pagamento paux : pagamentos) {
-                extratos.add(new Extrato("pagamento", paux.getValor(), paux.getData()));
+                Extrato extrato = new Extrato("pagamento", paux.getValor(), paux.getData());
+                extrato.setIdPagamento(paux.getId());
+                extratos.add(extrato);
             }
             extratos.sort((e1, e2) -> e1.getData().compareTo(e2.getData()));
         } else {
@@ -50,19 +54,24 @@ public class ExtratoController {
                 List<Compra> compras = c.getCompras();
                 compras.sort((c1, c2) -> c1.getData().compareTo(c2.getData()));
                 for (Compra caux : compras) {
-                    extratos.add(new Extrato("compra", -caux.getValor(), caux.getData()));
+                    Extrato extrato = new Extrato("compra", -caux.getValor(), caux.getData());
+                    extrato.setIdCompra(caux.getId());
+                    extratos.add(extrato);
                 }
             }
             if (!Objects.isNull(c.getPagamentos())) {
                 List<Pagamento> pagamentos = c.getPagamentos();
                 pagamentos.sort((p1, p2) -> p1.getData().compareTo(p2.getData()));
                 for (Pagamento paux : pagamentos) {
-                    extratos.add(new Extrato("pagamento", paux.getValor(), paux.getData()));
+                    Extrato extrato = new Extrato("pagamento", paux.getValor(), paux.getData());
+                    extrato.setIdPagamento(paux.getId());
+                    extratos.add(extrato);
                 }
             }
         }
         Collections.reverse(extratos);
         mv.addObject("extratos", extratos);
+        mv.addObject("cliente", c);
         return mv;
     }
 }

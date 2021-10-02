@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario para adicionar uma nova compra</title>
+    <!--CSS-BOOTSTRAP-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <!--CSS-ICON GOOGLE-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <a href="/" role="button"><span class="navbar-brand mb-0 h1">Sistema de Cobranças</span></a>
+        </div>
+    </nav>
+</header>
+<main class="container" style="width: 65%;">
+    <div>
+        <form th:object="${compra}" th:action="@{/saveCompra/}"  method="POST" >
+            <input th:field="*{cliente}" type="hidden"/>
+            <input th:field="*{id}" type="hidden"/>
+            <input type="hidden" th:field="*{data}" />
+            <div class="form-group">
+                <p style="margin: 5px 0;">Valor:</p>
+                <input type="number" th:field="*{valor}" class="form-control" step="0.00" placeholder="00,00" required>
+            </div>
+            <div class="form-group">
+                <p style="margin: 5px 0;">Descrição:</p>
+                <textarea maxlength="50" th:field="*{descricao}" class="form-control" placeholder="Quatro blusas brancas&#10Três casacos" required></textarea>
+            </div>
+            <div style="display:flex; margin-top: 7px">
+                <div style='margin-left: auto;'>
+                    <button style="padding: 0; margin: 0; border-width:0; background-color: #FFFFFF;" type="submit">
+                        <span class="btn btn-success btn-sm rounded-pill editLink material-icons" style="padding:0.4em">check</span>
+                    </button>
+                    <script>
+                        document.write('<a href="' + document.referrer + '">'+
+                            '<span class="btn btn-danger btn-sm rounded-pill editLink material-icons "'+
+                            'style="padding:0.4em">close</span></a>');
+                    </script>
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
+</body>
+</html>
