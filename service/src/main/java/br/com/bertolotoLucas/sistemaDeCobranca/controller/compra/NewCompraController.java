@@ -4,6 +4,7 @@ import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Cliente;
 import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Compra;
 import br.com.bertolotoLucas.sistemaDeCobranca.service.ClienteService;
 import br.com.bertolotoLucas.sistemaDeCobranca.service.CompraService;
+import br.com.bertolotoLucas.sistemaDeCobranca.utils.UpdaterSaldo;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,9 +54,8 @@ public class NewCompraController {
         System.out.println("Modifiquei a data para salvar: " + compra);
         compraService.save(compra);
         Cliente clienteUp = compra.getCliente();
-        //preciso implementar uma solução para modificar o cliente quando modificar a compra!
-        //clienteUp.setSaldo(clienteUp.getSaldo()- compra.getValor());
-        //clienteService.save(clienteUp);
+        clienteUp = new UpdaterSaldo().atualizaSaldo(clienteUp);
+        clienteService.save(clienteUp);
         return "redirect:/listExtrato/" + compra.getCliente().getId().toString();
     }
 }

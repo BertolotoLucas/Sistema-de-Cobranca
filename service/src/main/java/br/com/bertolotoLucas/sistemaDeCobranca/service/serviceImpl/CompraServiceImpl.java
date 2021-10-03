@@ -4,6 +4,7 @@ import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Compra;
 import br.com.bertolotoLucas.sistemaDeCobranca.repository.CompraRepository;
 import br.com.bertolotoLucas.sistemaDeCobranca.service.CompraService;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,5 +29,14 @@ public class CompraServiceImpl implements CompraService {
     @Override
     public Compra save(Compra c) {
         return compraRepository.save(c);
+    }
+
+    @Override
+    public Compra delete(Compra c) {
+        if (Objects.isNull(compraRepository.findById(c.getId()))) {
+            return null;
+        }
+        compraRepository.delete(c);
+        return c;
     }
 }

@@ -9,4 +9,5 @@ public interface CompraService {
     List<Compra> findAll();
     Compra findById(Long id);
     Compra save(Compra c);
+    Compra delete(Compra c);
 }
