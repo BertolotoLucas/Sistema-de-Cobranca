@@ -19,13 +19,12 @@ public class ExtratoController {
 
     @GetMapping(value = "/listExtrato/{id}")
     public ModelAndView listExtrato(@PathVariable Long id) {
-        //Preciso implementar uma pagina vazia caso o cliente nao tenha compras ou pagamentos
         Cliente c = clienteService.findById(id);
         if (Objects.isNull(c)) {
             ModelAndView mv = new ModelAndView("/");
             return mv;
         }
-        if (Objects.isNull(c.getPagamentos()) && Objects.isNull(c.getCompras())) {
+        if (c.getPagamentos().isEmpty() && c.getCompras().isEmpty()) {
             ModelAndView mv = new ModelAndView("extratoVazio");
             mv.addObject("cliente", c);
             return mv;
@@ -33,7 +32,7 @@ public class ExtratoController {
         ModelAndView mv = new ModelAndView("extrato");
         mv.addObject("cliente", c);
         List<Extrato> extratos = new ArrayList<>();
-        if (!Objects.isNull(c.getCompras()) && !Objects.isNull(c.getPagamentos())) {
+        if (!c.getCompras().isEmpty() && !c.getPagamentos().isEmpty()) {
             List<Compra> compras = c.getCompras();
             compras.sort((c1, c2) -> c1.getData().compareTo(c2.getData()));
             List<Pagamento> pagamentos = c.getPagamentos();
@@ -50,7 +49,7 @@ public class ExtratoController {
             }
             extratos.sort((e1, e2) -> e1.getData().compareTo(e2.getData()));
         } else {
-            if (!Objects.isNull(c.getCompras())) {
+            if (!c.getCompras().isEmpty()) {
                 List<Compra> compras = c.getCompras();
                 compras.sort((c1, c2) -> c1.getData().compareTo(c2.getData()));
                 for (Compra caux : compras) {
@@ -59,7 +58,7 @@ public class ExtratoController {
                     extratos.add(extrato);
                 }
             }
-            if (!Objects.isNull(c.getPagamentos())) {
+            if (!c.getPagamentos().isEmpty()) {
                 List<Pagamento> pagamentos = c.getPagamentos();
                 pagamentos.sort((p1, p2) -> p1.getData().compareTo(p2.getData()));
                 for (Pagamento paux : pagamentos) {

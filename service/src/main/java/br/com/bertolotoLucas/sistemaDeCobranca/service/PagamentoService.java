@@ -9,4 +9,5 @@ public interface PagamentoService {
     List<Pagamento> findAll();
     Pagamento findById(Long id);
     Pagamento save(Pagamento p);
+    Pagamento delete(Pagamento p);
 }

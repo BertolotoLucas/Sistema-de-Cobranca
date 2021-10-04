@@ -16,7 +16,7 @@
                 <div class="container-fluid">
                     <a href="/" role="button"><span class="navbar-brand mb-0 h1">Sistema de Cobranças</span></a>
                     <a th:href="@{/{idCliente}/newCompra/(idCliente=${cliente.id})}"><span class="btn btn-secondary btn-sm rounded-pill editLink material-icons" >shopping_cart</span></a>
-                    <a href="#"><span class="btn btn-success btn-sm rounded-pill editLink material-icons" >attach_money</span></a>
+                    <a th:href="@{/{idCliente}/newPagamento/(idCliente=${cliente.id})}"><span class="btn btn-success btn-sm rounded-pill editLink material-icons" >attach_money</span></a>
                 </div>
             </nav>
         </header>

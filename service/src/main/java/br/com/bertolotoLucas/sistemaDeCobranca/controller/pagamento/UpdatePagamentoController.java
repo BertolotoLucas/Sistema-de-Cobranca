@@ -1,8 +1,9 @@
-package br.com.bertolotoLucas.sistemaDeCobranca.controller.compra;
+package br.com.bertolotoLucas.sistemaDeCobranca.controller.pagamento;
 
 import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Cliente;
-import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Compra;
+import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Pagamento;
 import br.com.bertolotoLucas.sistemaDeCobranca.service.ClienteService;
+import br.com.bertolotoLucas.sistemaDeCobranca.service.PagamentoService;
 import java.util.List;
 import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,36 +13,38 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class UpdateCompraController {
+public class UpdatePagamentoController {
     @Autowired
     ClienteService clienteService;
 
-    @GetMapping("/{idCliente}/updateCompra/{id}")
-    public ModelAndView getCompraUpdateForm(@PathVariable Long idCliente, @PathVariable Long id) {
+    @Autowired
+    PagamentoService pagamentoService;
+
+    @GetMapping("{idCliente}/updatePagamento/{id}")
+    public ModelAndView getPagamentoUpdateForm(@PathVariable Long idCliente, @PathVariable Long id) {
         ModelAndView mv = new ModelAndView();
         Cliente cliente = clienteService.findById(idCliente);
         if (Objects.isNull(cliente)) {
             mv.setViewName("redirect:/");
             return mv;
         }
-        Compra compra = null;
-        List<Compra> compras = cliente.getCompras();
-        if (Objects.isNull(compras)) {
+        Pagamento pagamento = null;
+        List<Pagamento> pagamentos = cliente.getPagamentos();
+        if (Objects.isNull(pagamentos)) {
             mv.setViewName("redirect:/listExtrato/" + cliente.getId());
             return mv;
         }
-        for (Compra c : compras) {
-            if (c.getId().equals(id)) {
-                compra = c;
+        for (Pagamento p : pagamentos) {
+            if (p.getId().equals(id)) {
+                pagamento = p;
             }
         }
-        if (Objects.isNull(compra)) {
+        if (Objects.isNull(pagamento)) {
             mv.setViewName("redirect:/listExtrato/" + cliente.getId());
             return mv;
         }
-        System.out.println("Compra indo para o formulario para atualizar : " + compra);
-        mv.addObject("compra", compra);
-        mv.setViewName("updateCompraForm");
+        mv.addObject("pagamento", pagamento);
+        mv.setViewName("updatePagamentoForm");
         return mv;
     }
 }

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Extrato vazio</title>
+    <!--CSS-BOOTSTRAP-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <!--CSS-ICON GOOGLE-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <a href="/" role="button"><span class="navbar-brand mb-0 h1">Sistema de Cobranças</span></a>
+        </div>
+    </nav>
+</header>
+<main class="container">
+    <figure class="text-center">
+        <h1 class="display-4" th:text="|Extrato do cliente ${cliente.nome} está vazio! Por favor adicione uma compra ou pagamento.|"></h1>
+        <a th:href="@{/{idCliente}/newPagamento/(idCliente=${cliente.id})}" style="margin: 1em;"><span class="btn btn-success btn-sm rounded-pill editLink material-icons md-48" style="margin: 1em;">attach_money</span></a>
+        <a th:href="@{/{idCliente}/newCompra/(idCliente=${cliente.id})}" ><span class="btn btn-secondary btn-sm rounded-pill editLink material-icons md-48" style="margin: 0.5em 0.5em;">shopping_cart</span></a>
+    </figure>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+<script src="/js/script.js"></script>
+</body>
+</html>
