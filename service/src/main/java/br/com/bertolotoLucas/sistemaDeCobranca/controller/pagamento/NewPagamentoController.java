@@ -48,8 +48,7 @@ public class NewPagamentoController {
         }
         pagamentoService.save(pagamento);
         Cliente clienteUp = pagamento.getCliente();
-        clienteUp = new UpdaterSaldo().atualizaSaldo(clienteUp);
-        clienteService.save(clienteUp);
+        new UpdaterSaldo().atualizaSaldo(clienteUp);
         return "redirect:/listExtrato/" + pagamento.getCliente().getId().toString();
     }
 }

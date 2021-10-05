@@ -31,8 +31,7 @@ public class DeleteCompraController {
         deletedCompra = compraService.delete(compraService.findById(id));
         Cliente cliente = deletedCompra.getCliente();
         cliente.getCompras().remove(deletedCompra);
-        Cliente clienteUp = new UpdaterSaldo().atualizaSaldo(cliente);
-        clienteService.save(clienteUp);
+        new UpdaterSaldo().atualizaSaldo(cliente);
         return "redirect:/listExtrato/" + deletedCompra.getCliente().getId().toString();
     }
 }

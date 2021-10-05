@@ -54,8 +54,7 @@ public class NewCompraController {
         System.out.println("Modifiquei a data para salvar: " + compra);
         compraService.save(compra);
         Cliente clienteUp = compra.getCliente();
-        clienteUp = new UpdaterSaldo().atualizaSaldo(clienteUp);
-        clienteService.save(clienteUp);
+        new UpdaterSaldo().atualizaSaldo(clienteUp);
         return "redirect:/listExtrato/" + compra.getCliente().getId().toString();
     }
 }

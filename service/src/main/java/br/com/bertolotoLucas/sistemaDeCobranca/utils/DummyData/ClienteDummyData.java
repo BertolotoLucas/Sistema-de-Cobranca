@@ -16,7 +16,7 @@ public class ClienteDummyData {
     //@PostConstruct
     public void saveClientes() {
         List<Cliente> clientes = new ArrayList<>();
-        for (int i = 1; i < 100; i++) {
+        for (int i = 1; i < 10000; i++) {
             clientes.add(new Cliente("Cliente #" + i, 0));
         }
         clienteRepository.saveAll(clientes);

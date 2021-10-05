@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -32,8 +33,13 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public List<Cliente> findAll(Pageable paginacao) {
-        return (List<Cliente>) clienteRepository.findAll(paginacao);
+    public Long count() {
+        return clienteRepository.count();
+    }
+
+    @Override
+    public Page<Cliente> findAll(Pageable paginacao) {
+        return clienteRepository.findAll(paginacao);
     }
 
     @Override

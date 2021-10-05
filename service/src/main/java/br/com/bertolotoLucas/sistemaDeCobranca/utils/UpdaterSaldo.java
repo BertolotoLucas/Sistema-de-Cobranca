@@ -6,25 +6,13 @@ import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Pagamento;
 import br.com.bertolotoLucas.sistemaDeCobranca.service.ClienteService;
 import java.util.List;
 import java.util.Objects;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class UpdaterSaldo {
+    @Autowired
+    ClienteService clienteService;
 
     public Cliente atualizaSaldo(Cliente cliente) {
-        double saldo = 0;
-
-        List<Compra> compras = cliente.getCompras();
-        if (!Objects.isNull(compras)) {
-            for (Compra c : compras) {
-                saldo = saldo - c.getValor();
-            }
-        }
-        List<Pagamento> pagamentos = cliente.getPagamentos();
-        if (!Objects.isNull(compras)) {
-            for (Pagamento p : pagamentos) {
-                saldo = saldo + p.getValor();
-            }
-        }
-        cliente.setSaldo(saldo);
-        return cliente;
+        return clienteService.aualizaSaldo(cliente);
     }
 }

@@ -31,9 +31,11 @@
                             <button style="padding: 0; margin: 0; border-width:0; background-color: #FFFFFF;" type="submit">
                                 <span class="btn btn-success btn-sm rounded-pill editLink material-icons" style="padding:0.4em">check</span>
                             </button>
-                            <a href="/" role="button">
-                                <span class="btn btn-danger btn-sm rounded-pill editLink material-icons " style="padding:0.4em">close</span>
-                            </a>
+                            <script>
+                                document.write('<a href="' + document.referrer + '">'+
+                                    '<span class="btn btn-danger btn-sm rounded-pill editLink material-icons "'+
+                                    'style="padding:0.4em">close</span></a>');
+                            </script>
                         </div>
                     </div>
                 </form>

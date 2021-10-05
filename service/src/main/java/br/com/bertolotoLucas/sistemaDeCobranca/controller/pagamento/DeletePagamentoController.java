@@ -31,8 +31,7 @@ public class DeletePagamentoController {
         deletedPagamento = PagamentoService.delete(PagamentoService.findById(id));
         Cliente cliente = deletedPagamento.getCliente();
         cliente.getPagamentos().remove(deletedPagamento);
-        Cliente clienteUp = new UpdaterSaldo().atualizaSaldo(cliente);
-        clienteService.save(clienteUp);
+        new UpdaterSaldo().atualizaSaldo(cliente);
         return "redirect:/listExtrato/" + deletedPagamento.getCliente().getId().toString();
     }
 }

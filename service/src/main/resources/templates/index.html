@@ -49,13 +49,35 @@
                         </tr>
                     </tbody>
                 </table>
-                <nav aria-label="Navegação de página exemplo">
-                    <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="#">Anterior</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Próximo</a></li>
+                <nav th:if="${totalPages > 0}" style="margin-right: 0.25em;">
+                    <ul class="pagination justify-content-end">
+                        <li th:if="${(totalPages - firstPage >= 3) && (actualPage > 3)}" class="page-item">
+                            <a class="page-link" th:text="|Primeira|" th:href="@{/page{firstPage}(firstPage=${firstPage})}"></a>
+                        </li>
+
+                        <li th:if="${actualPage - 2 > firstPage}" class="page-item">
+                            <a class="page-link" th:text="|${actualPage - 2}|" th:href="@{/page{page}(page=${actualPage - 2})}"></a>
+                        </li>
+
+                        <li th:if="${actualPage - 1 > firstPage}" class="page-item">
+                            <a class="page-link" th:text="|${actualPage - 1}|" th:href="@{/page{page}(page=${actualPage - 1})}"></a>
+                        </li>
+
+                        <li class="page-item active">
+                            <a class="page-link" th:text="|${actualPage}|" th:href="@{/page{actualPage}(actualPage=${actualPage})}"></a>
+                        </li>
+
+                        <li th:if="${actualPage + 1 < totalPages}" class="page-item">
+                            <a class="page-link" th:text="|${actualPage + 1}|" th:href="@{/page{page}(page=${actualPage + 1})}"></a>
+                        </li>
+
+                        <li th:if="${actualPage + 2 < totalPages}" class="page-item">
+                            <a class="page-link" th:text="|${actualPage + 2}|" th:href="@{/page{page}(page=${actualPage + 2})}"></a>
+                        </li>
+
+                        <li th:if="${(totalPages - actualPage >= 3) && (actualPage < totalPages - 3)}" class="page-item">
+                            <a class="page-link" th:text="|Ultima|" th:href="@{/page{totalPages}(totalPages=${totalPages})}"></a>
+                        </li>
                     </ul>
                 </nav>
             </div>
