@@ -26,6 +26,10 @@
                         <input th:field="*{nome}" type="text" class="form-control" placeholder="José Octavio Batista" required>
                     </div>
                     <input th:field="*{saldo}" type="hidden" class="form-control">
+                    <div class="form-group">
+                        <p style="margin: 5px 0;">Celular:</p>
+                        <input type="text" th:field="*{celular}" class="form-control" data-js="phone" id="celular">
+                    </div>
                     <div style="display:flex; margin-top: 7px">
                         <div style='margin-left: auto;'>
                             <button style="padding: 0; margin: 0; border-width:0; background-color: #FFFFFF;" type="submit">
@@ -42,4 +46,6 @@
             </div>
         </main>
     </body>
+    <script src="/js/celular.js"></script>
+    <script src="/js/vanilla.js"></script>
 </html>

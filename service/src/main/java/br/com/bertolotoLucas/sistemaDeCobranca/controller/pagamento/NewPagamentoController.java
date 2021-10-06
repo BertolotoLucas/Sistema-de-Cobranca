@@ -4,7 +4,6 @@ import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Cliente;
 import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Pagamento;
 import br.com.bertolotoLucas.sistemaDeCobranca.service.ClienteService;
 import br.com.bertolotoLucas.sistemaDeCobranca.service.PagamentoService;
-import br.com.bertolotoLucas.sistemaDeCobranca.utils.UpdaterSaldo;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,8 +46,7 @@ public class NewPagamentoController {
             pagamento.setData(pagamentoService.findById(pagamento.getId()).getData());
         }
         pagamentoService.save(pagamento);
-        Cliente clienteUp = pagamento.getCliente();
-        new UpdaterSaldo().atualizaSaldo(clienteUp);
+        clienteService.atualizaSaldo(pagamento.getCliente());
         return "redirect:/listExtrato/" + pagamento.getCliente().getId().toString();
     }
 }

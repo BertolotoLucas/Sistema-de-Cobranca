@@ -28,7 +28,7 @@ public class PagamentoDummyData {
             int i = 0;
             for (Cliente c : clientes) {
                 i++;
-                for (int j = 0; j < 8; j++) {
+                for (int j = 0; j < 3; j++) {
                     Pagamento p = new Pagamento(100.00 + (double) (i * 3) / 5, LocalDateTime.now(), c);
                     pagamentos.add(p);
                     c.setSaldo(c.getSaldo() + p.getValor());

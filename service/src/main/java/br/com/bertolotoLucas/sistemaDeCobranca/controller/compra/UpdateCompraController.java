@@ -39,7 +39,6 @@ public class UpdateCompraController {
             mv.setViewName("redirect:/listExtrato/" + cliente.getId());
             return mv;
         }
-        System.out.println("Compra indo para o formulario para atualizar : " + compra);
         mv.addObject("compra", compra);
         mv.setViewName("updateCompraForm");
         return mv;

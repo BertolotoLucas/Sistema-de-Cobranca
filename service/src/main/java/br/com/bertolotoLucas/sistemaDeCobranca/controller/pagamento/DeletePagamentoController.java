@@ -4,7 +4,6 @@ import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Cliente;
 import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Pagamento;
 import br.com.bertolotoLucas.sistemaDeCobranca.service.ClienteService;
 import br.com.bertolotoLucas.sistemaDeCobranca.service.PagamentoService;
-import br.com.bertolotoLucas.sistemaDeCobranca.utils.UpdaterSaldo;
 import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,7 +30,7 @@ public class DeletePagamentoController {
         deletedPagamento = PagamentoService.delete(PagamentoService.findById(id));
         Cliente cliente = deletedPagamento.getCliente();
         cliente.getPagamentos().remove(deletedPagamento);
-        new UpdaterSaldo().atualizaSaldo(cliente);
+        clienteService.atualizaSaldo(cliente);
         return "redirect:/listExtrato/" + deletedPagamento.getCliente().getId().toString();
     }
 }

@@ -4,7 +4,6 @@ import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Cliente;
 import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Compra;
 import br.com.bertolotoLucas.sistemaDeCobranca.service.ClienteService;
 import br.com.bertolotoLucas.sistemaDeCobranca.service.CompraService;
-import br.com.bertolotoLucas.sistemaDeCobranca.utils.UpdaterSaldo;
 import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,7 +30,7 @@ public class DeleteCompraController {
         deletedCompra = compraService.delete(compraService.findById(id));
         Cliente cliente = deletedCompra.getCliente();
         cliente.getCompras().remove(deletedCompra);
-        new UpdaterSaldo().atualizaSaldo(cliente);
+        clienteService.atualizaSaldo(cliente);
         return "redirect:/listExtrato/" + deletedCompra.getCliente().getId().toString();
     }
 }

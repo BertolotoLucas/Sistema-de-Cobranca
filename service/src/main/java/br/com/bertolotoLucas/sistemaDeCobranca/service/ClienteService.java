@@ -14,6 +14,6 @@ public interface ClienteService {
     Cliente findById(Long id);
     void save(Cliente c);
     Cliente delete(Cliente c);
-    Cliente aualizaSaldo(Cliente c);
+    Cliente atualizaSaldo(Cliente c);
     List<Cliente> aualizaAllSaldo();
 }

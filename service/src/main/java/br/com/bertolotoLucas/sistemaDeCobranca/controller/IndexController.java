@@ -35,10 +35,8 @@ public class IndexController {
         double clientePerPage = 15;
         PageRequest paginacao = PageRequest.of(numPage, (int) clientePerPage);
         double totalClientes = clienteService.count();
-        System.out.println("Total clientes: " + totalClientes);
         double totalPagesDbl = totalClientes / clientePerPage;
         int totalPages = (int) Math.ceil(totalPagesDbl);
-        System.out.println("Total paginas: " + totalPages);
         if (totalClientes < 1) {
             mv.setViewName("redirect:/vazio");
             return mv;

@@ -4,7 +4,6 @@ import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Cliente;
 import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Compra;
 import br.com.bertolotoLucas.sistemaDeCobranca.service.ClienteService;
 import br.com.bertolotoLucas.sistemaDeCobranca.service.CompraService;
-import br.com.bertolotoLucas.sistemaDeCobranca.utils.UpdaterSaldo;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +32,6 @@ public class NewCompraController {
         }
         Compra compra = new Compra();
         compra.setCliente(cliente);
-        System.out.println("Compra indo para o formulario: " + compra);
         mv.addObject("compra", compra);
         mv.setViewName("newCompraForm");
         return mv;
@@ -41,7 +39,6 @@ public class NewCompraController {
 
     @PostMapping("/saveCompra")
     public String saveCompra(@ModelAttribute Compra compra) {
-        System.out.println("Recebi essa compra para salvar: " + compra);
         if (Objects.isNull(compra)) {
             return "redirect:/";
         }
@@ -51,10 +48,8 @@ public class NewCompraController {
             //data is incoming without the seconds! resolving this..
             compra.setData(compraService.findById(compra.getId()).getData());
         }
-        System.out.println("Modifiquei a data para salvar: " + compra);
         compraService.save(compra);
-        Cliente clienteUp = compra.getCliente();
-        new UpdaterSaldo().atualizaSaldo(clienteUp);
+        clienteService.atualizaSaldo(compra.getCliente());
         return "redirect:/listExtrato/" + compra.getCliente().getId().toString();
     }
 }

@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 80
 spring:
   datasource:
     url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/sistemaCobranca?createDatabaseIfNotExist=true

@@ -74,15 +74,16 @@ public class ClienteServiceImpl implements ClienteService {
         List<Cliente> clientes = clienteRepository.findAll();
         List<Cliente> clientesResult = new ArrayList<>();
         for (Cliente c : clientes) {
-            clientesResult.add(aualizaSaldo(c));
+            clientesResult.add(atualizaSaldo(c));
         }
         return clientesResult;
     }
 
     @Override
-    public Cliente aualizaSaldo(Cliente c) {
-        Cliente cliente = findById(c.getId());
-        if (!Objects.isNull(cliente)) {
+    public Cliente atualizaSaldo(Cliente c) {
+        Optional<Cliente> optionalCliente = clienteRepository.findById(c.getId());
+        if (!Objects.isNull(optionalCliente)) {
+            Cliente cliente = optionalCliente.get();
             double result = 0;
             List<Pagamento> pagamentos = c.getPagamentos();
             for (Pagamento p : pagamentos) {
@@ -93,8 +94,9 @@ public class ClienteServiceImpl implements ClienteService {
                 result = result - caux.getValor();
             }
             cliente.setSaldo(result);
+            clienteRepository.save(cliente);
+            return cliente;
         }
-        clienteRepository.save(cliente);
-        return cliente;
+        return null;
     }
 }

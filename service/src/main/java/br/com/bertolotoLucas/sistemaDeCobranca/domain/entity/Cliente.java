@@ -1,8 +1,8 @@
 package br.com.bertolotoLucas.sistemaDeCobranca.domain.entity;
 
+import br.com.bertolotoLucas.sistemaDeCobranca.utils.Matcher;
 import java.util.List;
 import java.util.Objects;
-import javax.annotation.PostConstruct;
 import javax.persistence.*;
 
 @Entity
@@ -17,6 +17,9 @@ public class Cliente {
 
     @Column(nullable = false)
     private double saldo;
+
+    @Column
+    private String celular;
 
     @OneToMany(mappedBy = "cliente")
     private List<Compra> compras;
@@ -50,6 +53,16 @@ public class Cliente {
         this.saldo = saldo;
     }
 
+    public Cliente(String nome, double saldo, String celular) {
+        this.nome = nome;
+        this.saldo = saldo;
+        if (new Matcher().matchCelular(celular)) {
+            this.celular = celular;
+        } else {
+            this.celular = "";
+        }
+    }
+
     public Long getId() {
         return id;
     }
@@ -74,6 +87,16 @@ public class Cliente {
         this.saldo = saldo;
     }
 
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        if (new Matcher().matchCelular(celular)) {
+            this.celular = celular;
+        }
+    }
+
     public List<Compra> getCompras() {
         return compras;
     }
@@ -92,6 +115,19 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" + "id=" + id + ", nome='" + nome + '\'' + ", saldo=" + saldo + '}';
+        return (
+            "Cliente{" +
+            "id=" +
+            id +
+            ", nome='" +
+            nome +
+            '\'' +
+            ", saldo=" +
+            saldo +
+            ", celular='" +
+            celular +
+            '\'' +
+            '}'
+        );
     }
 }
