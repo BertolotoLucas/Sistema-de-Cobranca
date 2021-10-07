@@ -14,8 +14,8 @@
         <header>
             <nav class="navbar navbar-light bg-light">
                 <div class="container-fluid">
-                    <a href="/" role="button"><span class="navbar-brand mb-0 h1">Sistema de Cobranças</span></a>
-                    <a th:href="@{/newClienteForm}" role="button">
+                    <a href="/" role="button"><span class="navbar-brand mb-0 h1" title="Sistema de Cobranças">Sistema de Cobranças</span></a>
+                    <a th:href="@{/newClienteForm}" title="Registrar um novo cliente" role="button">
                         <span class="btn btn-primary btn-sm rounded-pill editLink material-icons btn-adicionar " style="padding:0.4em">person_add</span>
                     </a>
                 </div>
@@ -39,19 +39,20 @@
                         <tr th:each="cliente : ${clientes}">
                             <th scope="row" th:text="${cliente.id}"></th>
                             <td th:text="${cliente.nome}"></td>
-                            <td th:text="${cliente.saldo}"></td>
+                            <td th:if="${cliente.saldo<0}" th:text="|R$ ${cliente.saldo}|" style="color: red; font-weight: 700;"></td>
+                            <td th:if="${cliente.saldo>=0}" th:text="|R$ ${cliente.saldo}|" style="color: green; font-weight: 700;"></td>
                             <td th:if='${cliente.celular != "" }' th:text="${cliente.celular}"></td>
                             <td>
-                                <a th:href="@{/{idCliente}/newPagamento/(idCliente=${cliente.id})}"><span class="btn btn-success btn-sm rounded-pill editLink material-icons" >attach_money</span></a>
-                                <a th:href="@{/{idCliente}/newCompra/(idCliente=${cliente.id})}"><span class="btn btn-secondary btn-sm rounded-pill editLink material-icons" >shopping_cart</span></a>
-                                <a th:href="@{/listExtrato/{idCliente}(idCliente=${cliente.id})}"><span class="btn btn-success btn-sm rounded-pill editLink material-icons" style="background-color:#3b83bd; border-color:#3b83bd;">receipt</span></a>
-                                <a th:href="@{/updateCliente/{idCliente}(idCliente=${cliente.id})}"><span class="btn btn-warning btn-sm rounded-pill editLink material-icons" >edit</span></a>
-                                <a th:href="@{/deleteCliente/{idCliente}(idCliente=${cliente.id})}"><span class="btn btn-danger btn-sm rounded-pill editLink material-icons" >delete</span></a>
+                                <a th:href="@{/{idCliente}/newPagamento/(idCliente=${cliente.id})}" title="Registrar um novo pagamento do cliente"><span class="btn btn-success btn-sm rounded-pill editLink material-icons" >attach_money</span></a>
+                                <a th:href="@{/{idCliente}/newCompra/(idCliente=${cliente.id})}" title="Registrar uma nova compra do cliente"><span class="btn btn-secondary btn-sm rounded-pill editLink material-icons" >shopping_cart</span></a>
+                                <a th:href="@{/listExtrato/{idCliente}(idCliente=${cliente.id})}" title="Vizualizar o extrato completo do cliente" ><span class="btn btn-success btn-sm rounded-pill editLink material-icons" style="background-color:#3b83bd; border-color:#3b83bd;">receipt</span></a>
+                                <a th:href="@{/updateCliente/{idCliente}(idCliente=${cliente.id})}" title="Alterar algum dado do cliente"><span class="btn btn-warning btn-sm rounded-pill editLink material-icons" >edit</span></a>
+                                <a th:href="@{/deleteCliente/{idCliente}(idCliente=${cliente.id})}" title="Deletar o cliente"><span class="btn btn-danger btn-sm rounded-pill editLink material-icons" >delete</span></a>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <nav th:if="${totalPages > 0}" style="margin-right: 0.25em;">
+                <nav th:if="${totalPages > 1}" style="margin-right: 0.25em;">
                     <ul class="pagination justify-content-end">
                         <li th:if="${(totalPages - firstPage >= 3) && (actualPage > 3)}" class="page-item">
                             <a class="page-link" th:text="|Primeira|" th:href="@{/page{firstPage}(firstPage=${firstPage})}"></a>

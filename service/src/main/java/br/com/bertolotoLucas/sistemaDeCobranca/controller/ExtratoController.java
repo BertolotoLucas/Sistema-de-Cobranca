@@ -89,7 +89,7 @@ public class ExtratoController {
         }
         Collections.reverse(extratos);
         long totalExtratos = extratos.size();
-        double extratoPerPage = 5;
+        double extratoPerPage = 15;
         PageRequest paginacao = PageRequest.of(numPage, (int) extratoPerPage);
         double totalPagesDbl = totalExtratos / extratoPerPage;
         int totalPages = (int) Math.ceil(totalPagesDbl);

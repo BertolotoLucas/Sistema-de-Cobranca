@@ -14,11 +14,11 @@
         <header>
             <nav class="navbar navbar-light bg-light">
                 <div class="container-fluid">
-                    <a href="/" role="button"><span class="navbar-brand mb-0 h1">Sistema de Cobranças</span></a>
+                    <a href="/" role="button"><span class="navbar-brand mb-0 h1" title="Sistema de Cobranças">Sistema de Cobranças</span></a>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-item" th:href="@{/{idCliente}/newCompra/(idCliente=${cliente.id})}"><span class="btn btn-secondary btn-sm rounded-pill editLink material-icons" >shopping_cart</span></a>
-                            <a class="nav-item" th:href="@{/{idCliente}/newPagamento/(idCliente=${cliente.id})}"><span class="btn btn-success btn-sm rounded-pill editLink material-icons" >attach_money</span></a>
+                            <a class="nav-item" th:href="@{/{idCliente}/newPagamento/(idCliente=${cliente.id})}" title="Registrar um novo pagamento do cliente"><span class="btn btn-success btn-sm rounded-pill editLink material-icons" >attach_money</span></a>
+                            <a class="nav-item" th:href="@{/{idCliente}/newCompra/(idCliente=${cliente.id})}" title="Registrar uma nova compra do cliente"><span class="btn btn-secondary btn-sm rounded-pill editLink material-icons" >shopping_cart</span></a>
                         </li>
                     </ul>
                 </div>
@@ -28,7 +28,7 @@
             <!--TABELA-->
             <div class="table-responsive">
                 <table class="table table-striped table-hover table-bordered text-center align-middle caption-top">
-                    <caption th:text="|Extrato do cliente ${cliente.nome}|"></caption>
+                    <caption th:text="|Extrato do Cliente ${cliente.nome}|"></caption>
                     <thead>
                         <tr>
                           <th scope="col">Movimentação</th>
@@ -40,22 +40,23 @@
                     <tbody>
                         <tr th:each="extrato : ${extratos}" >
                             <th scope="row" th:text="${extrato.tipo}"></th>
-                            <td th:text="${extrato.valor}"></td>
+                            <td th:if="${extrato.tipo=='Compra'}" style="color: red; font-weight: 700;" th:text="|R$ ${extrato.valor}|"></td>
+                            <td th:if="${extrato.tipo=='Pagamento'}" style="color: green; font-weight: 700;" th:text="|R$ ${extrato.valor}|"></td>
                             <td th:text="${#temporals.format(extrato.data, 'dd/MM/yyyy HH:mm:ss')}"></td>
                             <td th:if="${extrato.tipo=='Compra'}">
                                 <!--If type Compra do it!-->
-                                <a th:href="@{/{idCliente}/updateCompra/{id}(idCliente=${cliente.id}, id=${extrato.idCompra})}"><span class="btn btn-warning btn-sm rounded-pill editLink material-icons" >edit</span></a>
-                                <a th:href="@{/{idCliente}/deleteCompra/{id}(idCliente=${cliente.id}, id=${extrato.idCompra})}"><span class="btn btn-danger btn-sm rounded-pill editLink material-icons" >delete</span></a>
+                                <a title="Atualizar um dado da compra do cliente" th:href="@{/{idCliente}/updateCompra/{id}(idCliente=${cliente.id}, id=${extrato.idCompra})}"><span class="btn btn-warning btn-sm rounded-pill editLink material-icons" >edit</span></a>
+                                <a title="Deletar compra realizada do cliente" th:href="@{/{idCliente}/deleteCompra/{id}(idCliente=${cliente.id}, id=${extrato.idCompra})}"><span class="btn btn-danger btn-sm rounded-pill editLink material-icons" >delete</span></a>
                             </td>
                             <td th:if="${extrato.tipo=='Pagamento'}">
                                 <!--If type Pagamento do it!-->
-                                <a th:href="@{/{idCliente}/updatePagamento/{id}(idCliente=${cliente.id}, id=${extrato.idPagamento})}"><span class="btn btn-warning btn-sm rounded-pill editLink material-icons" >edit</span></a>
-                                <a th:href="@{/{idCliente}/deletePagamento/{id}(idCliente=${cliente.id}, id=${extrato.idPagamento})}"><span class="btn btn-danger btn-sm rounded-pill editLink material-icons" >delete</span></a>
+                                <a title="Atualizar um dado do pagamento do cliente" th:href="@{/{idCliente}/updatePagamento/{id}(idCliente=${cliente.id}, id=${extrato.idPagamento})}"><span class="btn btn-warning btn-sm rounded-pill editLink material-icons" >edit</span></a>
+                                <a title="Deletar pagamento realizado do cliente" th:href="@{/{idCliente}/deletePagamento/{id}(idCliente=${cliente.id}, id=${extrato.idPagamento})}"><span class="btn btn-danger btn-sm rounded-pill editLink material-icons" >delete</span></a>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <nav th:if="${totalPages > 0}" style="margin-right: 0.25em;">
+                <nav th:if="${totalPages > 1}" style="margin-right: 0.25em;">
                     <ul class="pagination justify-content-end">
                         <li th:if="${(totalPages - firstPage >= 3) && (actualPage > 3)}" class="page-item">
                             <a class="page-link" th:text="|Primeira|" th:href="@{/listExtrato/{id}/page{firstPage}(id=${cliente.id}, firstPage=${firstPage})}"></a>

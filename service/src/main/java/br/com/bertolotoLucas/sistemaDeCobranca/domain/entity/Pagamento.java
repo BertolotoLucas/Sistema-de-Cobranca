@@ -1,5 +1,6 @@
 package br.com.bertolotoLucas.sistemaDeCobranca.domain.entity;
 
+import br.com.bertolotoLucas.sistemaDeCobranca.utils.FormasPagamento;
 import java.time.LocalDateTime;
 import javax.persistence.*;
 
@@ -15,6 +16,9 @@ public class Pagamento {
 
     @Column(nullable = false)
     private LocalDateTime data;
+
+    @Column
+    private FormasPagamento formaPagamento;
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
@@ -51,6 +55,14 @@ public class Pagamento {
 
     public void setData(LocalDateTime data) {
         this.data = data;
+    }
+
+    public FormasPagamento getFormaPagamento() {
+        return formaPagamento;
+    }
+
+    public void setFormaPagamento(FormasPagamento formaPagamento) {
+        this.formaPagamento = formaPagamento;
     }
 
     public Cliente getCliente() {

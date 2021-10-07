@@ -48,6 +48,11 @@ public class Cliente {
     @Deprecated
     public Cliente() {}
 
+    public Cliente(String nome) {
+        this.nome = nome;
+        this.saldo = 0;
+    }
+
     public Cliente(String nome, double saldo) {
         this.nome = nome;
         this.saldo = saldo;

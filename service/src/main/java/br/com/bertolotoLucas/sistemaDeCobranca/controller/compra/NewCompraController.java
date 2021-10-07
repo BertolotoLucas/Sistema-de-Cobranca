@@ -39,6 +39,7 @@ public class NewCompraController {
 
     @PostMapping("/saveCompra")
     public String saveCompra(@ModelAttribute Compra compra) {
+        compra.setCliente(clienteService.findById(compra.getCliente().getId()));
         if (Objects.isNull(compra)) {
             return "redirect:/";
         }

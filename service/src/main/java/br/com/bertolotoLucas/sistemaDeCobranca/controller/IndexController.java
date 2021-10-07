@@ -18,6 +18,11 @@ public class IndexController {
     @Autowired
     ClienteService clienteService;
 
+    @GetMapping(value = "/vazio")
+    public String getNoUsers() {
+        return "vazio";
+    }
+
     @GetMapping(value = "/")
     public ModelAndView getClientes() {
         ModelAndView mv = new ModelAndView("redirect:/page1");

@@ -39,6 +39,7 @@ public class NewPagamentoController {
         if (Objects.isNull(pagamento)) {
             return "redirect:/";
         }
+        pagamento.setCliente(clienteService.findById(pagamento.getCliente().getId()));
         if (Objects.isNull(pagamento.getId())) {
             pagamento.setData(LocalDateTime.now());
         } else {

@@ -13,23 +13,23 @@
 <header>
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
-            <a href="/" role="button"><span class="navbar-brand mb-0 h1">Sistema de Cobranças</span></a>
+            <a href="/" role="button"><span class="navbar-brand mb-0 h1" title="Sistema de Cobranças">Sistema de Cobranças</span></a>
         </div>
     </nav>
 </header>
 <main class="container" style="width: 65%;">
     <div>
         <form th:object="${compra}" th:action="@{/saveCompra/}"  method="POST" >
-            <input th:field="*{cliente}" type="hidden"/>
+            <input th:field="*{cliente.id}" type="hidden"/>
             <input th:field="*{id}" type="hidden"/>
             <input type="hidden" th:field="*{data}" />
             <div class="form-group">
                 <p style="margin: 5px 0;">Valor:</p>
-                <input type="number" th:field="*{valor}" class="form-control" onClick="this.select();" min="1.00" max="10000.00" step="0.01"  required>
+                <input type="number" th:field="*{valor}" class="form-control" onClick="this.select();" min="1.00" step="0.01"  required>
             </div>
             <div class="form-group">
                 <p style="margin: 5px 0;">Descrição:</p>
-                <textarea maxlength="50" th:field="*{descricao}" class="form-control" placeholder="Quatro blusas brancas&#10Três casacos" required></textarea>
+                <textarea maxlength="255" th:field="*{descricao}" class="form-control" placeholder="Quatro blusas brancas&#10Três casacos" required></textarea>
             </div>
             <div style="display:flex; margin-top: 7px">
                 <div style='margin-left: auto;'>
