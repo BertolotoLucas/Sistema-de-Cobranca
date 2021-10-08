@@ -16,7 +16,7 @@ public class Compra {
     @Column(nullable = false)
     private LocalDateTime data;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String descricao;
 
     @ManyToOne
