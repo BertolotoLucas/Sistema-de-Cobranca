@@ -21,6 +21,9 @@ public class Cliente {
     @Column
     private String celular;
 
+    @Column
+    private String endereco;
+
     @OneToMany(mappedBy = "cliente")
     private List<Compra> compras;
 
@@ -68,6 +71,17 @@ public class Cliente {
         }
     }
 
+    public Cliente(String nome, double saldo, String celular, String endereco) {
+        this.nome = nome;
+        this.saldo = saldo;
+        if (new Matcher().matchCelular(celular)) {
+            this.celular = celular;
+        } else {
+            this.celular = "";
+        }
+        this.endereco = endereco;
+    }
+
     public Long getId() {
         return id;
     }
@@ -100,6 +114,14 @@ public class Cliente {
         if (new Matcher().matchCelular(celular)) {
             this.celular = celular;
         }
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
     public List<Compra> getCompras() {

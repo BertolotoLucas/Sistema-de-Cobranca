@@ -32,7 +32,8 @@
                            <th scope="col">Nome</th>
                            <th scope="col">Em Aberto</th>
                            <th scope="col">Contato</th>
-                           <th scope="col"  class="th-lg">Ação</th>
+                           <th scope="col" class="th-lg">Endereço</th>
+                           <th scope="col" class="th-lg">Ação</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,6 +43,7 @@
                             <td th:if="${cliente.saldo<0}" th:text="|R$ ${cliente.saldo}|" style="color: red; font-weight: 700;"></td>
                             <td th:if="${cliente.saldo>=0}" th:text="|R$ ${cliente.saldo}|" style="color: green; font-weight: 700;"></td>
                             <td th:if='${cliente.celular != "" }' th:text="${cliente.celular}"></td>
+                            <td th:if='${cliente.endereco != "" }' th:text="${cliente.endereco}"></td>
                             <td>
                                 <a th:href="@{/{idCliente}/newPagamento/(idCliente=${cliente.id})}" title="Registrar um novo pagamento do cliente"><span class="btn btn-success btn-sm rounded-pill editLink material-icons" >attach_money</span></a>
                                 <a th:href="@{/{idCliente}/newCompra/(idCliente=${cliente.id})}" title="Registrar uma nova compra do cliente"><span class="btn btn-secondary btn-sm rounded-pill editLink material-icons" >shopping_cart</span></a>
