@@ -18,8 +18,9 @@
     </nav>
 </header>
 <main class="container" style="width: 65%;">
+    <h2 style="margin-top: 0.5em; margin-bottom: 0.5em">Atualize a compra do cliente:</h2>
     <div>
-        <form th:object="${compra}" th:action="@{/saveCompra/}"  method="POST" >
+        <form id="form" th:object="${compra}" th:action="@{/saveCompra/}"  method="POST" >
             <input th:field="*{cliente.id}" type="hidden"/>
             <input th:field="*{id}" type="hidden"/>
             <input type="hidden" th:field="*{data}" />
@@ -31,20 +32,30 @@
                 <p style="margin: 5px 0;">Descrição:</p>
                 <textarea th:field="*{descricao}" class="form-control" placeholder="Quatro blusas brancas&#10Três casacos" required></textarea>
             </div>
-            <div style="display:flex; margin-top: 7px">
-                <div style='margin-left: auto;'>
-                    <button style="padding: 0; margin: 0; border-width:0; background-color: #FFFFFF;" type="submit">
-                        <span class="btn btn-success btn-sm rounded-pill editLink material-icons" style="padding:0.4em">check</span>
-                    </button>
-                    <script>
+        </form>
+        <div style="display:flex; margin-top: 7px">
+            <div style='margin-left: auto;'>
+                <button id="btnAddProduto"
+                        style="padding: 0; margin: 0; border-width:0;background-color: #FFFFFF;">
+                    <span class="btn btn-success btn-sm rounded-pill editLink material-icons"
+                          style="background-color:#3b83bd; border-color:#3b83bd;padding:0.4em">add</span>
+                </button>
+                <button id="btnSaveCompra"
+                        style="padding: 0; margin: 0; border-width:0; background-color: #FFFFFF;">
+                    <span class="btn btn-success btn-sm rounded-pill editLink material-icons" style="padding:0.4em">check</span>
+                </button>
+                <script>
                         document.write('<a href="' + document.referrer + '">'+
                             '<span class="btn btn-danger btn-sm rounded-pill editLink material-icons "'+
                             'style="padding:0.4em">close</span></a>');
+
                     </script>
-                </div>
             </div>
-        </form>
+        </div>
     </div>
 </main>
+<script src="/js/addProduto.js"></script>
+<script src="/js/saveCompra.js"></script>
+<script src="/js/uploadCompra.js"></script>
 </body>
 </html>

@@ -19,6 +19,7 @@
     </nav>
 </header>
 <main class="container" style="width: 65%;">
+    <h2 style="margin-top: 0.5em; margin-bottom: 0.5em">Registre a compra do cliente:</h2>
     <div>
         <form id="form" th:action="@{/saveCompra/}" th:object="${compra}" method="post">
             <input th:field="*{cliente.id}" type="hidden"/>
