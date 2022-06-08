@@ -8,8 +8,7 @@ public class Produto {
     private double valorUnitario;
 
     @Deprecated
-    public Produto() {
-    }
+    public Produto() {}
 
     public Produto(int quantidade, String descricao, double valorUnitario) {
         this.quantidade = quantidade;
@@ -63,12 +62,20 @@ public class Produto {
 
     @Override
     public String toString() {
-        return "Produto{" +
-                "id=" + id +
-                ", idCliente=" + idCliente +
-                ", quantidade=" + quantidade +
-                ", descricao='" + descricao + '\'' +
-                ", valorUnitario=" + valorUnitario +
-                '}';
+        return (
+            "Produto{" +
+            "id=" +
+            id +
+            ", idCliente=" +
+            idCliente +
+            ", quantidade=" +
+            quantidade +
+            ", descricao='" +
+            descricao +
+            '\'' +
+            ", valorUnitario=" +
+            valorUnitario +
+            '}'
+        );
     }
 }
