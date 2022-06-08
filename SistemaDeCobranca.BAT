@@ -1,0 +1,1 @@
+java -jar C:\Users\Lucas\Desktop\sistemaDeCobranca.jar br.com.bertolotoLucas.sistemaDeCobranca.SistemaDeCobrancaApplication | start chrome http://localhost
