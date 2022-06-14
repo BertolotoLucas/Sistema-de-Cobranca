@@ -25,7 +25,7 @@
             <!--TABELA-->
             <div class="table-responsive">
                 <table class="table table-striped table-hover table-bordered text-center align-middle caption-top">
-                    <caption>Lista dos Clientes</caption>
+                    <caption th:text="|Lista dos Clientes - ${#lists.size(clientes)} clientes registrados.|"></caption>
                     <thead>
                         <tr>
                           <th scope="col">#</th>
@@ -42,8 +42,8 @@
                             <td th:text="${cliente.nome}"></td>
                             <td th:if="${cliente.saldo<0}" th:text="|R$ ${cliente.saldo}|" style="color: red; font-weight: 700;"></td>
                             <td th:if="${cliente.saldo>=0}" th:text="|R$ ${cliente.saldo}|" style="color: green; font-weight: 700;"></td>
-                            <td th:if='${cliente.celular != "" }' th:text="${cliente.celular}"></td>
-                            <td th:if='${cliente.endereco != "" }' th:text="${cliente.endereco}"></td>
+                            <td th:text="${cliente.celular}"></td>
+                            <td th:text="${cliente.endereco}"></td>
                             <td>
                                 <a th:href="@{/{idCliente}/newPagamento/(idCliente=${cliente.id})}" title="Registrar um novo pagamento do cliente"><span class="btn btn-success btn-sm rounded-pill editLink material-icons" >attach_money</span></a>
                                 <a th:href="@{/{idCliente}/newCompra/(idCliente=${cliente.id})}" title="Registrar uma nova compra do cliente"><span class="btn btn-secondary btn-sm rounded-pill editLink material-icons" >shopping_cart</span></a>
