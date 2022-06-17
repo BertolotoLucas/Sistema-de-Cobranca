@@ -1,12 +1,11 @@
 package br.com.bertolotoLucas.sistemaDeCobranca.domain.entity;
 
 import br.com.bertolotoLucas.sistemaDeCobranca.utils.LocalDateTimeUtil;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "compras")
@@ -65,6 +64,7 @@ public class Compra {
     public String getDataformatada() {
         return data == null ? "" : new SimpleDateFormat("dd-MM-yyyy'T'HH:mm").format(data);
     }
+
     public LocalDateTime getData() {
         return data;
     }

@@ -2,11 +2,10 @@ package br.com.bertolotoLucas.sistemaDeCobranca.domain.entity;
 
 import br.com.bertolotoLucas.sistemaDeCobranca.utils.FormasPagamento;
 import br.com.bertolotoLucas.sistemaDeCobranca.utils.LocalDateTimeUtil;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import javax.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "pagamentos")

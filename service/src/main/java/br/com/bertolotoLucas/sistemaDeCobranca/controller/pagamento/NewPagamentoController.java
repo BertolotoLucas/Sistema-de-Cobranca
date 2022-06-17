@@ -4,10 +4,9 @@ import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Cliente;
 import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Pagamento;
 import br.com.bertolotoLucas.sistemaDeCobranca.service.ClienteService;
 import br.com.bertolotoLucas.sistemaDeCobranca.service.PagamentoService;
+import br.com.bertolotoLucas.sistemaDeCobranca.utils.LocalDateTimeUtil;
 import java.time.LocalDateTime;
 import java.util.Objects;
-
-import br.com.bertolotoLucas.sistemaDeCobranca.utils.LocalDateTimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -43,8 +42,9 @@ public class NewPagamentoController {
         }
         pagamento.setCliente(clienteService.findById(pagamento.getCliente().getId()));
         if (Objects.isNull(pagamento.getId())) {
-            if (Objects.isNull(pagamento.getData()))
-                pagamento.setData(LocalDateTimeUtil.retirarOsSegundos(LocalDateTime.now()));
+            if (Objects.isNull(pagamento.getData())) pagamento.setData(
+                LocalDateTimeUtil.retirarOsSegundos(LocalDateTime.now())
+            );
         } else {
             //data is incoming without the seconds! resolving this..
             pagamento.setData(pagamentoService.findById(pagamento.getId()).getData());

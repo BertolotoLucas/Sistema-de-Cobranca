@@ -4,10 +4,9 @@ import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Cliente;
 import br.com.bertolotoLucas.sistemaDeCobranca.domain.entity.Compra;
 import br.com.bertolotoLucas.sistemaDeCobranca.service.ClienteService;
 import br.com.bertolotoLucas.sistemaDeCobranca.service.CompraService;
+import br.com.bertolotoLucas.sistemaDeCobranca.utils.LocalDateTimeUtil;
 import java.time.LocalDateTime;
 import java.util.Objects;
-
-import br.com.bertolotoLucas.sistemaDeCobranca.utils.LocalDateTimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,8 +45,9 @@ public class NewCompraController {
         }
         compra.setCliente(clienteService.findById(compra.getCliente().getId()));
         if (Objects.isNull(compra.getId())) {
-            if (Objects.isNull(compra.getData()))
-                compra.setData(LocalDateTimeUtil.retirarOsSegundos(LocalDateTime.now()));
+            if (Objects.isNull(compra.getData())) compra.setData(
+                LocalDateTimeUtil.retirarOsSegundos(LocalDateTime.now())
+            );
         } else {
             //data is incoming without the seconds! resolving this..
             compra.setData(compraService.findById(compra.getId()).getData());
