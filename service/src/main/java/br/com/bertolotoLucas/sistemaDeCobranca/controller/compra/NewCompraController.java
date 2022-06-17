@@ -41,7 +41,6 @@ public class NewCompraController {
 
     @PostMapping("/saveCompra")
     public String saveCompra(@ModelAttribute Compra compra) {
-        System.out.println("Vou salvar essa compra: " + compra);
         if (Objects.isNull(compra)) {
             return "redirect:/";
         }
