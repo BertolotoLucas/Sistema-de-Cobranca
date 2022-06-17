@@ -1,6 +1,10 @@
 package br.com.bertolotoLucas.sistemaDeCobranca.domain.entity;
 
 import br.com.bertolotoLucas.sistemaDeCobranca.utils.FormasPagamento;
+import br.com.bertolotoLucas.sistemaDeCobranca.utils.LocalDateTimeUtil;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import javax.persistence.*;
 
@@ -15,6 +19,7 @@ public class Pagamento {
     private double valor;
 
     @Column(nullable = false)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime data;
 
     @Column
@@ -30,6 +35,12 @@ public class Pagamento {
     public Pagamento(double valor, LocalDateTime data, Cliente cliente) {
         this.valor = valor;
         this.data = data;
+        this.cliente = cliente;
+    }
+
+    public Pagamento(double valor, Cliente cliente) {
+        this.valor = valor;
+        this.data = LocalDateTimeUtil.retirarOsSegundos(LocalDateTime.now());
         this.cliente = cliente;
     }
 
@@ -51,6 +62,10 @@ public class Pagamento {
 
     public LocalDateTime getData() {
         return data;
+    }
+
+    public String getDataformatada() {
+        return data == null ? "" : new SimpleDateFormat("dd-MM-yyyy'T'HH:mm").format(data);
     }
 
     public void setData(LocalDateTime data) {

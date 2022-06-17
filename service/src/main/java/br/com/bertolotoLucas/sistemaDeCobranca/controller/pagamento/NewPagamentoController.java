@@ -43,7 +43,8 @@ public class NewPagamentoController {
         }
         pagamento.setCliente(clienteService.findById(pagamento.getCliente().getId()));
         if (Objects.isNull(pagamento.getId())) {
-            pagamento.setData(LocalDateTimeUtil.retirarOsSegundos(LocalDateTime.now()));
+            if (Objects.isNull(pagamento.getData()))
+                pagamento.setData(LocalDateTimeUtil.retirarOsSegundos(LocalDateTime.now()));
         } else {
             //data is incoming without the seconds! resolving this..
             pagamento.setData(pagamentoService.findById(pagamento.getId()).getData());
