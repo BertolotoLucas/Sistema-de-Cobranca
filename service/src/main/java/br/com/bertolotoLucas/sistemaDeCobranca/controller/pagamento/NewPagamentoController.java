@@ -6,6 +6,8 @@ import br.com.bertolotoLucas.sistemaDeCobranca.service.ClienteService;
 import br.com.bertolotoLucas.sistemaDeCobranca.service.PagamentoService;
 import java.time.LocalDateTime;
 import java.util.Objects;
+
+import br.com.bertolotoLucas.sistemaDeCobranca.utils.LocalDateTimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -41,7 +43,7 @@ public class NewPagamentoController {
         }
         pagamento.setCliente(clienteService.findById(pagamento.getCliente().getId()));
         if (Objects.isNull(pagamento.getId())) {
-            pagamento.setData(LocalDateTime.now());
+            pagamento.setData(LocalDateTimeUtil.retirarOsSegundos(LocalDateTime.now()));
         } else {
             //data is incoming without the seconds! resolving this..
             pagamento.setData(pagamentoService.findById(pagamento.getId()).getData());

@@ -22,8 +22,10 @@
     <div>
         <form id="form" th:object="${compra}" th:action="@{/saveCompra/}"  method="POST" >
             <input th:field="*{cliente.id}" type="hidden"/>
-            <input th:field="*{id}" type="hidden"/>
-            <input type="hidden" th:field="*{data}" />
+            <div class="form-group">
+                <p style="margin: 5px 0;">Dia da compra:</p>
+                <input th:field="*{data}" class="form-control" type="datetime-local">
+            </div>
             <div class="form-group" style="display:none;">
                 <p style="margin: 5px 0;">Valor:</p>
                 <input type="number" th:field="*{valor}" class="form-control" onClick="this.select();" min="1.00" step="0.01"  required>
